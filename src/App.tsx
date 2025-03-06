@@ -139,8 +139,11 @@ function App() {
         </div>
         <div className="relative z-20 text-center px-4 animate-fade-in">
           <div className="mb-8 relative">
+            <h3 className="text-2xl md:text-5xl font-serif mb-6 drop-shadow-lg hover:scale-105 transition-transform duration-300">
+              Eunice Gichuhi
+            </h3>
             <h1 className="text-5xl md:text-7xl font-serif mb-6 drop-shadow-lg hover:scale-105 transition-transform duration-300">
-              Welcome to my portfolio!
+              Welcome to my portfolio! 
             </h1>
             <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-amber-400 to-red-400"></div>
           </div>
