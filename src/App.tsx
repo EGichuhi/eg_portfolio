@@ -131,7 +131,7 @@ function App() {
             muted 
             loop 
             playsInline
-            className="w-full h-full object-cover opacity-10 scale-105"
+            className="w-full h-full object-cover scale-105"
           >
             <source src="/background.mp4" type="video/mp4" />
             Your browser does not support the video tag.
@@ -148,13 +148,13 @@ function App() {
             Nanotechnology Engineering Student at University of Waterloo
           </p>
           <div className="flex justify-center space-x-6">
-            <a href="#" className="social-link group">
+            <a href="https://github.com/EGichuhi" className="social-link group">
               <Github size={24} className="group-hover:text-amber-300 transition-colors" />
             </a>
-            <a href="#" className="social-link group">
+            <a href="https://www.linkedin.com/in/eunicegichuhi/" className="social-link group">
               <Linkedin size={24} className="group-hover:text-orange-300 transition-colors" />
             </a>
-            <a href="#" className="social-link group">
+            <a href="emailto:eunice.gwanja@gmail.com" className="social-link group">
               <Mail size={24} className="group-hover:text-red-300 transition-colors" />
             </a>
           </div>
@@ -187,14 +187,11 @@ function App() {
             />
             <div className={`flex-1 ${isVisible.about ? 'animate-slide-in-right' : 'opacity-0'}`}>
               <p className="text-lg text-amber-100 leading-relaxed mb-4">
-                I'm an aspiring engineer pursuing a Bachelor's degree in Nanotechnology at the University of Waterloo. I'm passionate about problem-solving and developing innovative solutions.
-              </p>
+              I'm an aspiring engineer pursuing a Bachelor's degree in Nanotechnology at the University of Waterloo, with a strong passion for data-driven problem-solving and innovation. My multidisciplinary background bridges engineering, programming, and data analysis, allowing me to tackle complex challenges from multiple perspectives.              </p>
               <p className="text-lg text-amber-100 leading-relaxed mb-4">
-                My technical expertise includes programming in Python, HTML, and CSS, along with extensive experience in data analysis and machine learning using tools like Pandas, NumPy, Matplotlib, Seaborn, and SciPy. Through my coursework, I've gained proficiency in professional software such as COMSOL, AutoCAD, SQL, and MATLAB.
-              </p>
+              I have solid experience in data analysis and computational modeling, working with Python, SQL, and tools like Pandas, NumPy, Matplotlib, and Seaborn. While I'm still growing my expertise in machine learning, I have a strong foundation in data-driven problem-solving. Additionally, my technical background includes exposure to engineering software such as COMSOL, AutoCAD, and MATLAB, alongside proficiency in Python, HTML, and CSS.              </p>
               <p className="text-lg text-amber-100 leading-relaxed">
-                I'm currently seeking opportunities to collaborate with innovative teams and contribute to cutting-edge solutions in the tech industry. I'm eager to learn and grow as a valuable asset in my field.
-              </p>
+              I'm currently seeking internship opportunities in data, where I can apply and expand my analytical skills while gaining hands-on experience with real-world datasets and data-driven solutions. I'm eager to learn from experienced professionals, deepen my technical expertise, and contribute to innovative projects as I grow into a data-focused role.              </p>
             </div>
           </div>
         </div>
@@ -237,8 +234,7 @@ function App() {
               <ul className="list-disc list-inside space-y-2 text-amber-100">
                 <li>Conducted detailed reviews of AI-generated responses with 98% accuracy in protocol adherence</li>
                 <li>Enhanced reliability of user-facing responses by identifying and resolving AI output inconsistencies</li>
-                <li>Applied Python (Pandas, NumPy), SQL, and Excel for data cleaning and analysis</li>
-                <li>Upskilled in SQL and Databricks, experimenting with database querying and Jupyter Notebooks</li>
+                <li>Upskilled in SQL, experimenting with database querying and Jupyter Notebooks</li>
               </ul>
             </div>
 
@@ -251,8 +247,8 @@ function App() {
               <h4 className="text-lg text-amber-200 mb-2">AmLive, Toronto, ON (Hybrid)</h4>
               <ul className="list-disc list-inside space-y-2 text-amber-100">
                 <li>Utilized Python libraries for data analysis and visualization across 5 projects</li>
-                <li>Developed data processing pipeline using MongoDB and Databricks</li>
-                <li>Designed ETL process for aggregating music streaming data using SQL, Python, and Databricks</li>
+                <li>Designed and implemented a data processing pipeline using MongoDB to streamline data storage and retrieval.</li>
+                <li>Developed an ETL process to aggregate music streaming data using SQL and Python, optimizing data organization and analysis..</li>
               </ul>
             </div>
           </div>
