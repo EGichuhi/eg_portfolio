@@ -181,7 +181,7 @@ function App() {
           </div>
           <div className="flex flex-col md:flex-row items-center gap-12">
             <img
-              src="portme.png"
+              src="/portme.png"
               alt="Profile"
               className={`w-48 h-48 rounded-full object-cover ring-4 ring-amber-100 ${isVisible.about ? 'animate-slide-in-left' : 'opacity-0'}`}
             />
