@@ -125,7 +125,7 @@ function App() {
       {/* Hero Section with Video Background */}
       <section className="min-h-screen relative flex items-center justify-center text-white overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#451e1a]/70 via-[#5a2922]/70 to-[#6a3329]/70 backdrop-blur-sm z-10"></div>
+          <div className="absolute inset-0 z-10"></div>
           <video 
             autoPlay 
             muted 
