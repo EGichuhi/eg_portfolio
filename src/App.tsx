@@ -154,7 +154,7 @@ function App() {
             <a href="https://www.linkedin.com/in/eunicegichuhi/" className="social-link group">
               <Linkedin size={24} className="group-hover:text-orange-300 transition-colors" />
             </a>
-            <a href="emailto:eunice.gwanja@gmail.com" className="social-link group">
+            <a href="mailto:eunice.gwanja@gmail.com" className="social-link group">
               <Mail size={24} className="group-hover:text-red-300 transition-colors" />
             </a>
           </div>
