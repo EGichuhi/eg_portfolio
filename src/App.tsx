@@ -212,6 +212,20 @@ function App() {
             </h2>
           </div>
           <div className="space-y-12">
+            {/* Philip Morris International */}
+            <div className="bg-[#451e1a] rounded-lg shadow-lg p-8 border border-amber-900/30 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <div className="flex flex-col md:flex-row justify-between mb-4">
+                <h3 className="text-xl font-serif text-amber-100">B2B IT Intern</h3>
+                <p className="text-amber-400">APR 2025 - AUG 2024</p>
+              </div>
+              <h4 className="text-lg text-amber-200 mb-2">Telus International, Vancouver, BC (Remote)</h4>
+              <ul className="list-disc list-inside space-y-2 text-amber-100">
+                <li>Contributed to system integration initiatives by validating structured data pipelines, ensuring accurate synchronization between ERP systems (SAP) and partner-facing digital tools.</li>
+                <li>Assisted in the development and testing of new features for internal tools (JIRA, Confluence), improving user experience and functionality.</li>
+                <li>Collaborated with cross-functional teams to gather requirements and provide technical support for various projects.</li>
+                <li>Gained exposure to cloud technologies and data management practices through hands-on experience with data integration tasks (Qualtrics).</li>
+              </ul>
+            </div>
             {/* Operations Engineer Position */}
             <div className="bg-[#451e1a] rounded-lg shadow-lg p-8 border border-amber-900/30 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
               <div className="flex flex-col md:flex-row justify-between mb-4">
