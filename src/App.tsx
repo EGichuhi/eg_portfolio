@@ -230,7 +230,7 @@ function App() {
             <div className="bg-[#451e1a] rounded-lg shadow-lg p-8 border border-amber-900/30 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
               <div className="flex flex-col md:flex-row justify-between mb-4">
                 <h3 className="text-xl font-serif text-amber-100">Operations Engineer & Technology Intern</h3>
-                <p className="text-amber-400">JAN 2025 - Present</p>
+                <p className="text-amber-400">JAN 2025 - Apr 2025</p>
               </div>
               <h4 className="text-lg text-amber-200 mb-2">Second Bind, Toronto, ON</h4>
               <ul className="list-disc list-inside space-y-2 text-amber-100">
