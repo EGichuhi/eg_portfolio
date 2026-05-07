@@ -806,46 +806,54 @@ function WorkPage({ setPage }) {
 // PAGE: CONTACT
 // ═══════════════════════════════════════════════════════════════════════════════
 function ContactPage() {
-  const [form, setForm] = useState({name:'',email:'',phone:'',business:'', source:'',message:''});
+  const [form, setForm] = useState({
+  name:'',
+  email:'',
+  phone:'',
+  business:'',
+  source:'',
+  message:''
+});
   const [status, setStatus] = useState('idle');
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
+
   setStatus('submitting');
 
   try {
-    const res = await fetch('https://hook.us2.make.com/ngmp2bfno7rilhc9ozghuop2i4jcqnsx', {
+
+    await fetch('https://hook.us2.make.com/ngmp2bfno7rilhc9ozghuop2i4jcqnsx', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        access_key: "3422b1fe-2e3c-4e31-b4cd-eb4d5861a033",
-        subject: 'New Message from Portfolio Website',
         name: form.name,
         email: form.email,
         phone: form.phone,
         business: form.business,
         source: form.source,
         message: form.message,
-        submittedAt: new Date().toISOString(),
-        // Optional - helps you identify where the message came from
-        from: 'Portfolio Contact Form'
+        submittedAt: new Date().toISOString()
       }),
     });
 
-    const data = await res.json();
+    // Assume success if request sends
+    setStatus('sent');
 
-    if (res.ok && data.success) {
-      setStatus('sent');
-      // Reset form
-      setForm({ name: '', email: '', phone: '', business: '', source: '', message: '' });
-    } else {
-      setStatus('error');
-      console.error('Forms Error:', data);
-    }
+    setForm({
+      name:'',
+      email:'',
+      phone:'',
+      business:'',
+      source:'',
+      message:''
+    });
+
   } catch (err) {
+
     console.error(err);
+
     setStatus('error');
   }
 };
