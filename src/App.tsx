@@ -391,25 +391,30 @@ function Contact() {
   const [form,   setForm]   = useState({ name:'',email:'',phone:'',source:'',message:'' });
   const [status, setStatus] = useState('idle');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus('submitting');
-    try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-        method:'POST',
-        headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
-        body: JSON.stringify({
-          _subject: 'New Message from Portfolio',
-          name:    form.name,
-          email:   form.email,
-          phone:   form.phone   || 'Not provided',
-          source:  form.source  || 'Not specified',
-          message: form.message,
-        }),
-      });
-      setStatus(res.ok ? 'sent' : 'error');
-    } catch { setStatus('error'); }
-  };
+  const handleSubmit = async (e:any) => {
+  e.preventDefault();
+  setStatus('submitting');
+
+  try {
+    const res = await fetch("https://formspree.io/f/xgodzbzo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(form)
+    });
+
+    if (res.ok) {
+      setStatus("sent");
+      setForm({ name:"", email:"", phone:"", source:"", message:"" });
+    } else {
+      setStatus("error");
+    }
+  } catch (err) {
+    setStatus("error");
+  }
+};
 
   const inputStyle = {
     width:'100%', borderRadius:10, border:`1px solid ${C.border}`,
@@ -424,110 +429,341 @@ function Contact() {
   };
 
   return (
-    <section id="contact" style={{ background:C.bgMid,padding:'100px 0',position:'relative',overflow:'hidden' }}>
-      <div style={{ position:'absolute',top:-200,right:-200,width:600,height:600,borderRadius:'50%',background:'radial-gradient(circle,rgba(45,180,148,0.06) 0%,transparent 70%)',pointerEvents:'none' }}/>
-      <div style={{ position:'absolute',bottom:-150,left:-100,width:400,height:400,borderRadius:'50%',background:'radial-gradient(circle,rgba(160,80,40,0.2) 0%,transparent 70%)',pointerEvents:'none' }}/>
+    <section 
+  id="contact" 
+  style={{ 
+    background:C.bgMid,
+    padding:'100px 0',
+    position:'relative',
+    overflow:'hidden'
+  }}
+>
+  <div 
+    style={{ 
+      position:'absolute',
+      top:-200,
+      right:-200,
+      width:600,
+      height:600,
+      borderRadius:'50%',
+      background:'radial-gradient(circle,rgba(45,180,148,0.06) 0%,transparent 70%)',
+      pointerEvents:'none'
+    }}
+  />
 
-      <div style={{ maxWidth:1100,margin:'0 auto',padding:'0 40px',position:'relative',zIndex:1 }}>
-        <div style={{ display:'flex',alignItems:'center',gap:16,marginBottom:16 }}>
-          <div style={{ width:40,height:40,borderRadius:10,background:C.tealSoft,border:`1px solid ${C.tealBorder}`,display:'flex',alignItems:'center',justifyContent:'center' }}>
-            <Send size={18} color={C.teal}/>
-          </div>
-          <div>
-            <p style={{ color:C.teal,fontSize:12,letterSpacing:'0.15em',textTransform:'uppercase',margin:'0 0 2px',fontFamily:"'DM Sans',sans-serif" }}>Let's Connect</p>
-            <h2 style={{ fontFamily:"'Playfair Display',serif",fontSize:36,color:C.cream,margin:0 }}>Get in Touch</h2>
-          </div>
-        </div>
-        <p style={{ color:C.dim,fontSize:16,marginBottom:56,fontFamily:"'DM Sans',sans-serif",maxWidth:500 }}>
-          Ready to bring structure to your business? Let's talk about what a better system could look like for you.
-        </p>
+  <div 
+    style={{ 
+      position:'absolute',
+      bottom:-150,
+      left:-100,
+      width:400,
+      height:400,
+      borderRadius:'50%',
+      background:'radial-gradient(circle,rgba(160,80,40,0.2) 0%,transparent 70%)',
+      pointerEvents:'none'
+    }}
+  />
 
-        <div style={{ display:'grid',gridTemplateColumns:'1fr 1.4fr',gap:48,alignItems:'start' }}>
-
-          {/* Left — Calendly */}
-          <div>
-            <div style={{ marginBottom:16 }}>
-              <p style={{ color:C.dim,fontSize:12,letterSpacing:'0.12em',textTransform:'uppercase',margin:'0 0 8px',fontFamily:"'DM Sans',sans-serif" }}>Book a time directly</p>
-              <h3 style={{ fontFamily:"'Playfair Display',serif",color:C.cream,fontSize:22,margin:0 }}>Discovery Call</h3>
-            </div>
-            <div style={{ borderRadius:16,overflow:'hidden',border:`1px solid ${C.border}`,background:C.bgCard }}>
-              <div
-                className="calendly-inline-widget"
-                data-url={`${CALENDLY_URL}?hide_event_type_details=1&hide_gdpr_banner=1&background_color=3e2018&text_color=f0e0c8&primary_color=2db494`}
-                style={{ minWidth:280,height:660 }}
-              />
-              <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async/>
-            </div>
-          </div>
-
-          {/* Right — Form */}
-          <div style={{ background:C.bgCard,border:`1px solid ${C.border}`,borderRadius:20,padding:36 }}>
-            {status === 'sent' ? (
-              <div style={{ textAlign:'center',padding:'40px 0' }}>
-                <div style={{ width:64,height:64,borderRadius:'50%',background:C.tealSoft,border:`2px solid ${C.teal}`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 20px' }}>
-                  <Send size={24} color={C.teal}/>
-                </div>
-                <h3 style={{ fontFamily:"'Playfair Display',serif",color:C.cream,fontSize:24,marginBottom:10 }}>Message Sent!</h3>
-                <p style={{ color:C.dim,fontFamily:"'DM Sans',sans-serif" }}>I'll get back to you as soon as possible.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} style={{ display:'flex',flexDirection:'column',gap:20 }}>
-                <h3 style={{ fontFamily:"'Playfair Display',serif",color:C.cream,fontSize:22,margin:'0 0 4px' }}>Send a Message</h3>
-
-                {[
-                  { id:'name',  label:'Full Name',        type:'text',  placeholder:'Your full name',    required:true  },
-                  { id:'email', label:'Email Address',    type:'email', placeholder:'your@email.com',    required:true  },
-                  { id:'phone', label:'Phone (Optional)', type:'tel',   placeholder:'+1 (416) 000-0000', required:false },
-                ].map(f => (
-                  <div key={f.id}>
-                    <label style={labelStyle}>{f.label}{f.required && <span style={{ color:C.teal }}> *</span>}</label>
-                    <input type={f.type} placeholder={f.placeholder} required={f.required}
-                      value={form[f.id]} onChange={e=>setForm({...form,[f.id]:e.target.value})}
-                      style={inputStyle}
-                      onFocus={e=>e.target.style.borderColor=C.teal}
-                      onBlur={e=>e.target.style.borderColor=C.border}
-                    />
-                  </div>
-                ))}
-
-                <div>
-                  <label style={labelStyle}>How did you find me?</label>
-                  <select value={form.source} onChange={e=>setForm({...form,source:e.target.value})}
-                    style={{ ...inputStyle,background:C.bgRaised }}>
-                    <option value="">Select an option…</option>
-                    {['LinkedIn','GitHub','Referral','Google Search','Social Media','Other'].map(o => (
-                      <option key={o} value={o}>{o}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label style={labelStyle}>Message<span style={{ color:C.teal }}> *</span></label>
-                  <textarea required rows={4}
-                    placeholder="Tell me about your business and what you're looking to improve…"
-                    value={form.message} onChange={e=>setForm({...form,message:e.target.value})}
-                    style={{ ...inputStyle,resize:'vertical' }}
-                    onFocus={e=>e.target.style.borderColor=C.teal}
-                    onBlur={e=>e.target.style.borderColor=C.border}
-                  />
-                </div>
-
-                {status === 'error' && (
-                  <p style={{ color:'#f87171',fontSize:13,fontFamily:"'DM Sans',sans-serif",background:'rgba(248,113,113,0.07)',border:'1px solid rgba(248,113,113,0.2)',borderRadius:8,padding:'10px 14px',margin:0 }}>
-                    Something went wrong. Please try again or reach out directly.
-                  </p>
-                )}
-
-                <button type="submit" disabled={status==='submitting'}
-                  style={{ padding:14,borderRadius:12,background: status==='submitting' ? C.bgRaised : C.teal,color: status==='submitting' ? C.dim : '#fff',fontWeight:600,fontSize:15,fontFamily:"'DM Sans',sans-serif",border:'none',cursor: status==='submitting' ? 'not-allowed' : 'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:8,transition:'all 0.2s' }}>
-                  {status === 'submitting' ? 'Sending…' : <> Send Message <Send size={16}/> </>}
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
+  <div 
+    style={{ 
+      maxWidth:760,
+      margin:'0 auto',
+      padding:'0 40px',
+      position:'relative',
+      zIndex:1
+    }}
+  >
+    {/* Heading */}
+    <div style={{ textAlign:'center',marginBottom:20 }}>
+      <div 
+        style={{ 
+          width:44,
+          height:44,
+          borderRadius:12,
+          background:C.tealSoft,
+          border:`1px solid ${C.tealBorder}`,
+          display:'flex',
+          alignItems:'center',
+          justifyContent:'center',
+          margin:'0 auto 18px'
+        }}
+      >
+        <Send size={18} color={C.teal}/>
       </div>
-    </section>
+
+      <p 
+        style={{ 
+          color:C.teal,
+          fontSize:12,
+          letterSpacing:'0.15em',
+          textTransform:'uppercase',
+          margin:'0 0 8px',
+          fontFamily:"'DM Sans',sans-serif"
+        }}
+      >
+        Let's Connect
+      </p>
+
+      <h2 
+        style={{ 
+          fontFamily:"'Playfair Display',serif",
+          fontSize:42,
+          color:C.cream,
+          margin:'0 0 18px'
+        }}
+      >
+        Get in Touch
+      </h2>
+
+      <p 
+        style={{ 
+          color:C.dim,
+          fontSize:16,
+          lineHeight:1.8,
+          fontFamily:"'DM Sans',sans-serif",
+          maxWidth:560,
+          margin:'0 auto 24px'
+        }}
+      >
+        Ready to bring more structure and clarity to your business? 
+        Send a message below and I'll get back to you shortly.
+      </p>
+
+      {/* Cal Link */}
+      <div
+        style={{
+          display:'inline-flex',
+          alignItems:'center',
+          gap:10,
+          padding:'12px 18px',
+          borderRadius:14,
+          background:C.bgCard,
+          border:`1px solid ${C.border}`,
+          marginBottom:42
+        }}
+      >
+        <Calendar size={16} color={C.teal}/>
+
+        <span
+          style={{
+            color:C.dim,
+            fontSize:14,
+            fontFamily:"'DM Sans',sans-serif"
+          }}
+        >
+          Prefer to talk directly?
+        </span>
+
+        <a
+          href="https://cal.com/safibase/discovery-call-zoom"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color:C.teal,
+            textDecoration:'none',
+            fontWeight:600,
+            fontFamily:"'DM Sans',sans-serif"
+          }}
+        >
+          Book a discovery call
+        </a>
+      </div>
+    </div>
+
+    {/* Form */}
+    <div 
+      style={{ 
+        background:C.bgCard,
+        border:`1px solid ${C.border}`,
+        borderRadius:24,
+        padding:40
+      }}
+    >
+      {status === 'sent' ? (
+        <div style={{ textAlign:'center',padding:'40px 0' }}>
+          <div 
+            style={{ 
+              width:64,
+              height:64,
+              borderRadius:'50%',
+              background:C.tealSoft,
+              border:`2px solid ${C.teal}`,
+              display:'flex',
+              alignItems:'center',
+              justifyContent:'center',
+              margin:'0 auto 20px'
+            }}
+          >
+            <Send size={24} color={C.teal}/>
+          </div>
+
+          <h3 
+            style={{ 
+              fontFamily:"'Playfair Display',serif",
+              color:C.cream,
+              fontSize:26,
+              marginBottom:10
+            }}
+          >
+            Message Sent
+          </h3>
+
+          <p 
+            style={{ 
+              color:C.dim,
+              fontFamily:"'DM Sans',sans-serif",
+              lineHeight:1.7
+            }}
+          >
+            Thanks for reaching out. I'll get back to you as soon as possible.
+          </p>
+        </div>
+      ) : (
+        <form 
+          onSubmit={handleSubmit} 
+          style={{ 
+            display:'flex',
+            flexDirection:'column',
+            gap:22
+          }}
+        >
+          <h3 
+            style={{ 
+              fontFamily:"'Playfair Display',serif",
+              color:C.cream,
+              fontSize:24,
+              margin:'0 0 6px'
+            }}
+          >
+            Send a Message
+          </h3>
+
+          <p
+            style={{
+              color:C.dim,
+              fontSize:14,
+              lineHeight:1.7,
+              margin:'0 0 8px',
+              fontFamily:"'DM Sans',sans-serif"
+            }}
+          >
+            Share a little about your business, goals, or the systems you'd like help improving.
+          </p>
+
+          {[
+            { id:'name',  label:'Full Name',        type:'text',  placeholder:'Your full name',    required:true  },
+            { id:'email', label:'Email Address',    type:'email', placeholder:'your@email.com',    required:true  },
+            { id:'phone', label:'Phone Number',     type:'tel',   placeholder:'+1 (416) 000-0000', required:false },
+            { id:'business', label:'Business / Brand', type:'text', placeholder:'Your business name', required:false }
+          ].map(f => (
+            <div key={f.id}>
+              <label style={labelStyle}>
+                {f.label}
+                {f.required && <span style={{ color:C.teal }}> *</span>}
+              </label>
+
+              <input
+                type={f.type}
+                placeholder={f.placeholder}
+                required={f.required}
+                value={form[f.id]}
+                onChange={e=>setForm({...form,[f.id]:e.target.value})}
+                style={inputStyle}
+                onFocus={e=>e.target.style.borderColor=C.teal}
+                onBlur={e=>e.target.style.borderColor=C.border}
+              />
+            </div>
+          ))}
+
+          <div>
+            <label style={labelStyle}>What are you looking for help with?</label>
+
+            <select
+              value={form.source}
+              onChange={e=>setForm({...form,source:e.target.value})}
+              style={{ ...inputStyle,background:C.bgRaised }}
+            >
+              <option value="">Select an option…</option>
+
+              {[
+                'CRM & Client Systems',
+                'Automations',
+                'Website Improvements',
+                'Operations & Workflow',
+                'Lead Management',
+                'General Consultation'
+              ].map(o => (
+                <option key={o} value={o}>{o}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label style={labelStyle}>
+              Message
+              <span style={{ color:C.teal }}> *</span>
+            </label>
+
+            <textarea
+              required
+              rows={5}
+              placeholder="Tell me about your business and what you're hoping to improve or simplify..."
+              value={form.message}
+              onChange={e=>setForm({...form,message:e.target.value})}
+              style={{ ...inputStyle,resize:'vertical',minHeight:140 }}
+              onFocus={e=>e.target.style.borderColor=C.teal}
+              onBlur={e=>e.target.style.borderColor=C.border}
+            />
+          </div>
+
+          {status === 'error' && (
+            <p 
+              style={{ 
+                color:'#f87171',
+                fontSize:13,
+                fontFamily:"'DM Sans',sans-serif",
+                background:'rgba(248,113,113,0.07)',
+                border:'1px solid rgba(248,113,113,0.2)',
+                borderRadius:8,
+                padding:'10px 14px',
+                margin:0
+              }}
+            >
+              Something went wrong. Please try again or reach out directly.
+            </p>
+          )}
+
+          <button
+            type="submit"
+            disabled={status==='submitting'}
+            style={{
+              padding:16,
+              borderRadius:14,
+              background: status==='submitting' ? C.bgRaised : C.teal,
+              color: status==='submitting' ? C.dim : '#fff',
+              fontWeight:600,
+              fontSize:15,
+              fontFamily:"'DM Sans',sans-serif",
+              border:'none',
+              cursor: status==='submitting' ? 'not-allowed' : 'pointer',
+              display:'flex',
+              alignItems:'center',
+              justifyContent:'center',
+              gap:8,
+              transition:'all 0.2s',
+              marginTop:8
+            }}
+          >
+            {status === 'submitting'
+              ? 'Sending…'
+              : <> Send Message <Send size={16}/> </>
+            }
+          </button>
+        </form>
+      )}
+    </div>
+  </div>
+</section>
   );
 }
 
