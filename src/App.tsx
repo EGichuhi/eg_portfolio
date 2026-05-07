@@ -411,58 +411,142 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gradient-to-br from-[#451e1a] to-[#5a2922]">
-        <div className={`max-w-4xl mx-auto px-4 ${isVisible.contact ? 'animate-slide-up' : 'opacity-0'}`}>
-          <div className="flex justify-center mb-12">
-            <h2 className="text-3xl font-serif text-center section-title group text-white">
-              Get In Touch
-              <span className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 group-hover:scale-125 transition-transform">
-                <Heart size={20} className="text-amber-500 fill-amber-500 group-hover:text-red-500 group-hover:fill-red-500 transition-colors" />
-              </span>
-            </h2>
-          </div>
-          <div className="bg-[#451e1a]/80 backdrop-blur-sm rounded-lg shadow-lg p-8 border border-amber-900/30">
-            <form className="space-y-6">
-              <div className="transform transition-transform hover:scale-[1.02]">
-                <label htmlFor="name" className="block text-sm font-medium text-amber-100">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="mt-1 block w-full rounded-md border-amber-900/50 bg-[#5a2922]/50 text-amber-100 shadow-sm focus:border-amber-400 focus:ring-amber-400"
-                />
-              </div>
-              <div className="transform transition-transform hover:scale-[1.02]">
-                <label htmlFor="email" className="block text-sm font-medium text-amber-100">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="mt-1 block w-full rounded-md border-amber-900/50 bg-[#5a2922]/50 text-amber-100 shadow-sm focus:border-amber-400 focus:ring-amber-400"
-                />
-              </div>
-              <div className="transform transition-transform hover:scale-[1.02]">
-                <label htmlFor="message" className="block text-sm font-medium text-amber-100">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  className="mt-1 block w-full rounded-md border-amber-900/50 bg-[#5a2922]/50 text-amber-100 shadow-sm focus:border-amber-400 focus:ring-amber-400"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-amber-700 text-white py-2 px-4 rounded-md transition-all duration-300 hover:bg-amber-600 hover:transform hover:scale-[1.02] active:scale-95"
-              >
-                Send Message
-              </button>
-            </form>
+<section id="contact" className="py-20 bg-[#2C1F1A] relative overflow-hidden">
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(194, 106, 71, 0.15),_transparent_50%),radial-gradient(circle_at_bottom_right,_rgba(212, 175, 55, 0.10),_transparent_45%)]"></div>
+
+  <div className={`max-w-7xl mx-auto px-4 ${isVisible.contact ? 'animate-slide-up' : 'opacity-0'}`}>
+    <div className="grid lg:grid-cols-2 gap-12 items-start">
+      
+      {/* Left Column - Info + Calendly */}
+      <div className="space-y-8">
+        <div>
+          <p className="text-sm uppercase tracking-[0.3em] text-[#E8B38C]">Get In Touch</p>
+          <h2 className="mt-3 text-4xl font-serif text-white leading-tight">
+            Ready to turn your next chapter into a stronger, more confident story?
+          </h2>
+          <p className="mt-6 text-lg text-[#D4C3B5] max-w-md">
+            Reach out for personalized guidance on immigration, mentorship, community leadership, or organizational support.
+          </p>
+        </div>
+
+        {/* Calendly Booking */}
+        <div>
+          <p className="mb-4 text-sm uppercase tracking-[0.3em] text-[#E8B38C]">Or Book a Discovery Call</p>
+          <div className="bg-[#3A2A24] border border-[#6B4E3D] rounded-3xl p-3 shadow-xl overflow-hidden">
+            <div 
+              className="calendly-inline-widget" 
+              data-url="https://calendly.com/yourusername/30min?hide_event_type_details=1&hide_gdpr_banner=1"
+              style={{ minWidth: '320px', height: '720px' }}
+            ></div>
           </div>
         </div>
-      </section>
+      </div>
+
+      {/* Right Column - Form */}
+      <div className="bg-[#3A2A24] border border-[#6B4E3D] rounded-3xl p-8 shadow-soft">
+        <form className="space-y-6">
+          
+          {/* Contact Information */}
+          <div className="space-y-6">
+            <h3 className="text-xl font-medium text-[#F5EDE4]">Contact Information</h3>
+            
+            <div>
+              <label htmlFor="Name" className="block text-sm font-medium text-[#D4C3B5] mb-1">
+                Full Name <span className="text-[#E89A7E]">*</span>
+              </label>
+              <input
+                type="text"
+                id="Name"
+                name="Name"
+                required
+                className="mt-1 block w-full rounded-2xl border border-[#6B4E3D] bg-[#2C1F1A] px-5 py-4 text-[#F5EDE4] placeholder:text-[#8C6F5E] focus:border-[#E8B38C] focus:ring-2 focus:ring-[#E8B38C]/30 transition"
+                placeholder="Your full name"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="Email" className="block text-sm font-medium text-[#D4C3B5] mb-1">
+                Email Address <span className="text-[#E89A7E]">*</span>
+              </label>
+              <input
+                type="email"
+                id="Email"
+                name="Email"
+                required
+                className="mt-1 block w-full rounded-2xl border border-[#6B4E3D] bg-[#2C1F1A] px-5 py-4 text-[#F5EDE4] placeholder:text-[#8C6F5E] focus:border-[#E8B38C] focus:ring-2 focus:ring-[#E8B38C]/30 transition"
+                placeholder="your@email.com"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="Contact Info" className="block text-sm font-medium text-[#D4C3B5] mb-1">
+                Phone Number <span className="text-[#E89A7E]">*</span>
+              </label>
+              <input
+                type="tel"
+                id="Contact Info"
+                name="Contact Info"
+                required
+                className="mt-1 block w-full rounded-2xl border border-[#6B4E3D] bg-[#2C1F1A] px-5 py-4 text-[#F5EDE4] placeholder:text-[#8C6F5E] focus:border-[#E8B38C] focus:ring-2 focus:ring-[#E8B38C]/30 transition"
+                placeholder="+1 (123) 456-7890"
+              />
+            </div>
+          </div>
+
+          {/* Lead Source */}
+          <div className="space-y-6 pt-4 border-t border-[#6B4E3D]">
+            <h3 className="text-xl font-medium text-[#F5EDE4]">How did you hear about us?</h3>
+            
+            <div>
+              <label htmlFor="Source" className="block text-sm font-medium text-[#D4C3B5] mb-1">
+                Source <span className="text-[#E89A7E]">*</span>
+              </label>
+              <select
+                id="Source"
+                name="Source"
+                required
+                className="mt-1 block w-full rounded-2xl border border-[#6B4E3D] bg-[#2C1F1A] px-5 py-4 text-[#F5EDE4] focus:border-[#E8B38C] focus:ring-2 focus:ring-[#E8B38C]/30 transition"
+              >
+                <option value="">Select an option...</option>
+                <option value="Meta">Meta (Facebook/Instagram ads)</option>
+                <option value="Organic">Organic (Search engine)</option>
+                <option value="Referral">Referral (Word of mouth)</option>
+                <option value="Website">Direct website visit</option>
+                <option value="LinkedIn">LinkedIn</option>
+                <option value="Event">Event / Webinar / Trade show</option>
+                <option value="Cold Call">Cold Call</option>
+                <option value="Social Media">Other Social Media</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Notes */}
+          <div className="pt-4 border-t border-[#6B4E3D]">
+            <label htmlFor="Notes" className="block text-sm font-medium text-[#D4C3B5] mb-1">
+              Additional Information / Notes
+            </label>
+            <textarea
+              id="Notes"
+              name="Notes"
+              rows={4}
+              className="mt-1 block w-full rounded-2xl border border-[#6B4E3D] bg-[#2C1F1A] px-5 py-4 text-[#F5EDE4] placeholder:text-[#8C6F5E] focus:border-[#E8B38C] focus:ring-2 focus:ring-[#E8B38C]/30 transition"
+              placeholder="Tell us about your needs..."
+            ></textarea>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full mt-6 bg-gradient-to-r from-[#E8B38C] to-[#D4AF37] hover:from-[#F5C89F] hover:to-[#E8C15A] text-[#2C1F1A] font-semibold py-4 rounded-full transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-lg"
+          >
+            Submit Application
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Footer */}
       <footer className="bg-gradient-to-r from-[#3a1915] via-[#451e1a] to-[#5a2922] text-white py-8">
