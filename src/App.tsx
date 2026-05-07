@@ -122,54 +122,132 @@ function App() {
         </div>
       )}
 
-      {/* Hero Section with Video Background */}
-      <section className="min-h-screen relative flex items-center justify-center text-white overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 z-10"></div>
-          <video 
-            autoPlay 
-            muted 
-            loop 
-            playsInline
-            className="w-full h-full object-cover scale-105"
-          >
-            <source src="/background.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <div className="relative z-20 text-center px-4 animate-fade-in">
-          <div className="mb-8 relative">
-            <h3 className="text-2xl md:text-5xl font-serif mb-6 drop-shadow-lg hover:scale-105 transition-transform duration-300">
-              Eunice Gichuhi
-            </h3>
-            <h1 className="text-5xl md:text-7xl font-serif mb-6 drop-shadow-lg hover:scale-105 transition-transform duration-300">
-              Welcome to my portfolio! 
-            </h1>
-            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-amber-400 to-red-400"></div>
-          </div>
-          <p className="text-xl md:text-2xl font-light mb-8 drop-shadow hover:text-amber-100 transition-colors">
-            Nanotechnology Engineering Student at University of Waterloo
-          </p>
-          <div className="flex justify-center space-x-6">
-            <a href="https://github.com/EGichuhi" className="social-link group">
-              <Github size={24} className="group-hover:text-amber-300 transition-colors" />
-            </a>
-            <a href="https://www.linkedin.com/in/eunicegichuhi/" className="social-link group">
-              <Linkedin size={24} className="group-hover:text-orange-300 transition-colors" />
-            </a>
-            <a href="mailto:eunice.gwanja@gmail.com" className="social-link group">
-              <Mail size={24} className="group-hover:text-red-300 transition-colors" />
-            </a>
-          </div>
-        </div>
-        <a 
-          href="#about"
-          className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20 animate-bounce nav-indicator group"
-        >
-          <ChevronDown size={32} className="drop-shadow-lg group-hover:text-amber-200 transition-colors" />
-        </a>
-      </section>
+     {/* Hero Section with Video Background */}
+<section className="min-h-screen relative flex items-center justify-center text-white overflow-hidden">
+  <div className="absolute inset-0">
+    <div className="absolute inset-0 bg-black/45 z-10"></div>
 
+    <video
+      autoPlay
+      muted
+      loop
+      playsInline
+      className="w-full h-full object-cover scale-105"
+    >
+      <source src="/background.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div className="relative z-20 max-w-5xl mx-auto text-center px-6 animate-fade-in">
+    
+    {/* Small Top Label */}
+    <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md">
+      <div className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></div>
+      <span className="text-sm tracking-wide uppercase text-white/90">
+        Founder of Safibase
+      </span>
+    </div>
+
+    {/* Main Heading */}
+    <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold leading-tight mb-6 tracking-tight">
+      Build systems that help businesses
+      <span className="block bg-gradient-to-r from-teal-300 to-cyan-100 bg-clip-text text-transparent">
+        grow without chaos.
+      </span>
+    </h1>
+
+    {/* Subheading */}
+    <p className="text-lg md:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-10">
+      I design modern CRM systems, automations, dashboards, and websites for 
+      service businesses — helping founders save time, organize operations, 
+      and scale with clarity.
+    </p>
+
+    {/* CTA Buttons */}
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+      <a
+        href="#projects"
+        className="px-8 py-4 rounded-2xl bg-teal-500 hover:bg-teal-400 transition-all duration-300 text-white font-medium shadow-2xl hover:scale-105"
+      >
+        View My Work
+      </a>
+
+      <a
+        href="#contact"
+        className="px-8 py-4 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all duration-300 text-white font-medium hover:scale-105"
+      >
+        Book a Discovery Call
+      </a>
+    </div>
+
+    {/* Tech Stack */}
+    <div className="flex flex-wrap justify-center gap-3 text-sm text-white/70 mb-10">
+      {[
+        "Airtable",
+        "Make",
+        "Supabase",
+        "Lovable",
+        "GitHub",
+        "Automation",
+      ].map((item) => (
+        <span
+          key={item}
+          className="px-4 py-2 rounded-full bg-white/10 border border-white/10 backdrop-blur-sm"
+        >
+          {item}
+        </span>
+      ))}
+    </div>
+
+    {/* Social Links */}
+    <div className="flex justify-center space-x-6">
+      <a
+        href="https://github.com/EGichuhi"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group p-3 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all duration-300"
+      >
+        <Github
+          size={22}
+          className="group-hover:text-teal-300 transition-colors"
+        />
+      </a>
+
+      <a
+        href="https://www.linkedin.com/in/eunicegichuhi/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group p-3 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all duration-300"
+      >
+        <Linkedin
+          size={22}
+          className="group-hover:text-cyan-300 transition-colors"
+        />
+      </a>
+
+      <a
+        href="mailto:eunice.gwanja@gmail.com"
+        className="group p-3 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all duration-300"
+      >
+        <Mail
+          size={22}
+          className="group-hover:text-emerald-300 transition-colors"
+        />
+      </a>
+    </div>
+  </div>
+
+  {/* Scroll Indicator */}
+  <a
+    href="#about"
+    className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce"
+  >
+    <div className="p-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10">
+      <ChevronDown size={28} className="text-white/80" />
+    </div>
+  </a>
+</section>
       {/* About Section */}
       <section id="about" className="py-20 px-4 relative">
         <div className="absolute inset-0 bg-gradient-to-br from-[#451e1a]/90 to-[#5a2922]/90"></div>
