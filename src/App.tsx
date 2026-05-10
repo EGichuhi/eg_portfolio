@@ -3,7 +3,7 @@ import {
   Github, Linkedin, Mail, ExternalLink, ChevronDown, X, ArrowRight,
   Briefcase, Code2, Send, MapPin, Calendar, ShoppingCart,
   Star, Plus, Minus, CheckCircle, Cpu, Layers,
-  ChevronRight, BookOpen, Zap, BarChart2, Globe
+  ChevronRight, BookOpen, Zap, BarChart2, Globe, Download
 } from 'lucide-react';
 
 // ─── BRIGHT WARM PALETTE ─────────────────────────────────────────────────────
