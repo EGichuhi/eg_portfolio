@@ -198,7 +198,7 @@ function Nav({ page, setPage, cartCount = 0 }) {
         color: scrolled ? C.textDark : '#fff',
         letterSpacing:'0.05em',transition:'color 0.3s',
         fontWeight:700,
-      }}>EG</button>
+      }}>SafiBase</button>
 
       <div style={{display:'flex',gap:32,alignItems:'center'}}>
         {navLinks.map(l => (
@@ -223,7 +223,7 @@ function Footer({ setPage }) {
     <footer style={{background:C.bgDeep,padding:'48px',display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:20,position:'relative',overflow:'hidden'}}>
       <Orbs variant="dark"/>
       <div style={{position:'relative',zIndex:1}}>
-        <button onClick={()=>setPage('home')} style={{background:'none',border:'none',cursor:'pointer',fontFamily:"'Playfair Display',serif",fontSize:22,color:'#fff',fontWeight:700,display:'block',marginBottom:6}}>EG</button>
+        <button onClick={()=>setPage('home')} style={{background:'none',border:'none',cursor:'pointer',fontFamily:"'Playfair Display',serif",fontSize:22,color:'#fff',fontWeight:700,display:'block',marginBottom:6}}>SafiBase</button>
         <p style={{color:'rgba(255,255,255,0.4)',fontSize:12,fontFamily:"'DM Sans',sans-serif"}}>© {new Date().getFullYear()} Eunice Gichuhi · All rights reserved.</p>
       </div>
       <div style={{position:'relative',zIndex:1,display:'flex',gap:10}}>
@@ -731,22 +731,6 @@ function AboutPage({ setPage }) {
                 >
                   Work With Me <ArrowRight size={15}/>
                 </button>
-                <a
-                  href="/resume.pdf" download
-                  style={{
-                    padding:'13px 24px',borderRadius:11,
-                    border:'1.5px solid rgba(255,255,255,0.18)',
-                    background:'rgba(255,255,255,0.06)',
-                    color:'rgba(255,255,255,0.8)',fontWeight:500,
-                    fontSize:14,fontFamily:"'DM Sans',sans-serif",
-                    textDecoration:'none',display:'inline-flex',
-                    alignItems:'center',gap:8,transition:'all .22s',
-                  }}
-                  onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.38)';e.currentTarget.style.background='rgba(255,255,255,.1)';}}
-                  onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.18)';e.currentTarget.style.background='rgba(255,255,255,.06)';}}
-                >
-                  <Download size={15}/> Download CV
-                </a>
               </div>
             </div>
 
@@ -1168,7 +1152,7 @@ function WorkPage({ setPage }) {
     {title:'Smart Farming AI Initiative',year:'2024',desc:'AI solutions for sustainable agriculture in Kano State, Nigeria.',image:'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&q=80',technologies:['Python','AI','Data Analytics','ML'],link:'https://www.omdena.com/chapter-challenges/smart-farming-using-ai-for-sustainable-agriculture-in-kano-state-nigeria',category:'Data'},
     {title:'Public Transport Accessibility',year:'2024',desc:'Transport data analysis to improve accessibility for people with disabilities in Nairobi.',image:'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80',technologies:['Python','Git','Data Analytics'],link:'https://www.omdena.com/chapter-challenges/enhancing-public-transport-accessibility-for-insivible-disabilities-in-nairobi',category:'Data'},
     {title:'Customer Analysis & Product Insights',year:'2023',desc:'Advanced EDA analyzing customer behavior and sales trends across product lines.',image:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80',technologies:['Python','Jupyter','Data Visualization'],link:'https://github.com/EGichuhi/Customer_data_analysis',category:'Data'},
-    {title:'Web Development Portfolio',year:'2025–Present',desc:'Professional websites and web apps for service businesses — including a tech blog and e-commerce store.',image:'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80',technologies:['React','Next.js','HTML/CSS','JavaScript'],link:'#',category:'Web', subProjects:['blog','store']},
+    {title:'Web Development Portfolio',year:'2025–Present',desc:'Professional websites and web apps for service businesses — including a tech blog and e-commerce store.',image:'public/webdev.png?auto=format&fit=crop&q=80',technologies:['React','Next.js','HTML/CSS','JavaScript'],link:'#',category:'Web', subProjects:['blog','store']},
   ];
 
   const catColor   = { Research:C.cognac, Data:C.teal, Web:'#7c5fe8' };
@@ -1618,16 +1602,6 @@ const webProjectsFull = [
     link:'http://www.kalogadrywall.com',
     badge:'Live Site',
     isInternal:false,
-  },
-  {
-    title:'Digital Products Store',
-    description:'A full e-commerce store selling CRM templates, automation packs, and business services.',
-    image:'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80',
-    technologies:['React','Cart System','Product Detail Pages','Checkout Flow'],
-    link:'#',
-    badge:'Built Here',
-    isInternal:true,
-    internalPage:'store',
   },
 ];
 
