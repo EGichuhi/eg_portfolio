@@ -176,6 +176,7 @@ function Nav({ page, setPage, cartCount = 0 }) {
 
   const navLinks = [
     { id:'home', label:'Home' },
+    { id:'about', label:'about' },
     { id:'work', label:'Work & Projects' },
     { id:'contact', label:'Contact' },
   ];
@@ -548,6 +549,629 @@ function HomePage({ setPage }) {
           <button className="teal-btn" onClick={()=>setPage('contact')} style={{padding:'17px 44px',borderRadius:14,fontSize:16}}>
             Book a Discovery Call <ArrowRight size={17}/>
           </button>
+        </div>
+      </section>
+    </div>
+  );
+}
+// ─────────────────────────────────────────────────────────────────────────────
+// AboutPage.jsx  — drop into your Safibase portfolio alongside your other pages
+//
+// HOW TO USE:
+//  1. Import this component in App.jsx:
+//       import AboutPage from './AboutPage';
+//  2. Add 'about' to your nav links array
+//  3. Add the route in your page-switch block:
+//       {page === 'about' && <AboutPage setPage={setPage}/>}
+// ─────────────────────────────────────────────────────────────────────────────
+
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  MapPin, Briefcase, ArrowRight, ChevronRight,
+  Zap, BarChart2, Globe, Layers, ExternalLink,
+  Github, Linkedin, Mail, Download
+} from 'lucide-react';
+
+// ── Reuse the same palette as your main site ─────────────────────────────────
+const C = {
+  bg:          '#fdf6ee',
+  bgAlt:       '#f5ead8',
+  bgCard:      '#ffffff',
+  bgCardWarm:  '#fef9f3',
+  bgDeep:      '#3d1f0e',
+  bgDeepMid:   '#4e2a14',
+  cream:       '#fdf6ee',
+  textDark:    '#2c1505',
+  textMid:     '#6b3a1f',
+  textDim:     '#a06040',
+  teal:        '#2db494',
+  tealDark:    '#1e9478',
+  tealSoft:    'rgba(45,180,148,0.12)',
+  tealBorder:  'rgba(45,180,148,0.3)',
+  cognac:      '#c4622d',
+  cognacSoft:  'rgba(196,98,45,0.1)',
+  border:      'rgba(100,50,20,0.1)',
+  borderMed:   'rgba(100,50,20,0.18)',
+  shadow:      '0 4px 24px rgba(60,20,5,0.08)',
+  shadowMd:    '0 8px 40px rgba(60,20,5,0.12)',
+  shadowLg:    '0 20px 60px rgba(60,20,5,0.16)',
+};
+
+// ── Reusable helpers (mirrors your main file) ─────────────────────────────────
+function Orbs({ variant = 'light' }) {
+  const orbs = variant === 'dark'
+    ? [
+        { w:500,h:500,top:'-15%',right:'-10%',bg:'rgba(45,180,148,0.12)' },
+        { w:380,h:380,bottom:'-10%',left:'-8%',bg:'rgba(196,98,45,0.15)' },
+      ]
+    : [
+        { w:600,h:600,top:'-20%',right:'-15%',bg:'rgba(45,180,148,0.07)' },
+        { w:400,h:400,bottom:'-5%',left:'-8%',bg:'rgba(196,98,45,0.08)' },
+      ];
+  return (
+    <>
+      {orbs.map((o,i) => (
+        <div key={i} style={{
+          position:'absolute',width:o.w,height:o.h,borderRadius:'50%',
+          top:o.top,right:o.right,bottom:o.bottom,left:o.left,
+          background:`radial-gradient(circle,${o.bg} 0%,transparent 70%)`,
+          pointerEvents:'none',zIndex:0,
+        }}/>
+      ))}
+    </>
+  );
+}
+
+function GridTexture({ dark=false }) {
+  const c = dark ? 'rgba(255,255,255,0.03)' : 'rgba(100,50,20,0.04)';
+  return (
+    <div style={{
+      position:'absolute',inset:0,zIndex:0,pointerEvents:'none',
+      backgroundImage:`linear-gradient(${c} 1px,transparent 1px),linear-gradient(90deg,${c} 1px,transparent 1px)`,
+      backgroundSize:'56px 56px',
+    }}/>
+  );
+}
+
+// ── Intersection-observer fade-up hook ────────────────────────────────────────
+function useFadeUp() {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.12 }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+  return [ref, visible];
+}
+
+function FadeSection({ children, delay = 0 }) {
+  const [ref, visible] = useFadeUp();
+  return (
+    <div ref={ref} style={{
+      opacity: visible ? 1 : 0,
+      transform: visible ? 'none' : 'translateY(28px)',
+      transition: `opacity .7s ${delay}s cubic-bezier(.22,1,.36,1), transform .7s ${delay}s cubic-bezier(.22,1,.36,1)`,
+    }}>
+      {children}
+    </div>
+  );
+}
+
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const skills = [
+  { group:'Systems & CRM',   items:['Airtable','Make.com','Supabase','HubSpot','CRM Architecture','Workflow Design'] },
+  { group:'Automation',      items:['Make.com','Zapier','API Integration','Webhooks','AI Pipelines','No-Code Tools'] },
+  { group:'Development',     items:['React','Next.js','JavaScript','HTML/CSS','Lovable','GitHub'] },
+  { group:'Data & Science',  items:['Python','MATLAB','SQL','Pandas','NumPy','COMSOL','AutoCAD'] },
+];
+
+const timeline = [
+  {
+    year:'2024 – Now', type:'founder',
+    role:'Founder & Systems Designer',
+    org:'Safibase',
+    location:'Toronto, ON',
+    color:C.teal,
+    desc:'Building clean, scalable systems for service businesses — CRM pipelines, automations, dashboards, and client-facing websites. Replacing scattered spreadsheets with infrastructure that actually works.',
+  },
+  {
+    year:'APR – AUG 2025', type:'work',
+    role:'B2B IT Intern',
+    org:'Philip Morris International',
+    location:'Toronto, ON (Hybrid)',
+    color:'#7c5fe8',
+    desc:'Validated structured data pipelines between SAP ERP systems and partner tools. Developed and tested JIRA / Confluence features, and supported cross-functional technical projects.',
+  },
+  {
+    year:'JAN – APR 2025', type:'work',
+    role:'Operations Engineer & Technology Intern',
+    org:'Second Bind',
+    location:'Toronto, ON',
+    color:C.cognac,
+    desc:'Implemented AI automations to eliminate manual tasks. Identified and resolved operational bottlenecks, increasing throughput through process redesign and technology-led solutions.',
+  },
+  {
+    year:'JAN – JUN 2024', type:'work',
+    role:'Data Analyst',
+    org:'Telus International',
+    location:'Vancouver, BC (Remote)',
+    color:'#e8a030',
+    desc:'Reviewed AI-generated outputs with 98% accuracy in protocol adherence. Improved reliability of user-facing responses by identifying and resolving model inconsistencies.',
+  },
+  {
+    year:'JAN – APR 2023', type:'work',
+    role:'Data Engineering Intern',
+    org:'AmLive',
+    location:'Toronto, ON (Hybrid)',
+    color:C.teal,
+    desc:'Built a MongoDB data processing pipeline for streamlined storage and retrieval. Developed an ETL process to aggregate music streaming data using SQL and Python.',
+  },
+];
+
+const values = [
+  { icon:<Layers size={20}/>,    title:'Systems over hustle', desc:'The goal is infrastructure that runs without you — not more effort, smarter design.' },
+  { icon:<Zap size={20}/>,       title:'Automation first',    desc:'If a task happens more than twice with the same inputs, it should run itself.' },
+  { icon:<BarChart2 size={20}/>, title:'Clarity in data',     desc:'You can\'t improve what you can\'t see. Good systems make the right numbers obvious.' },
+  { icon:<Globe size={20}/>,     title:'Built to last',       desc:'I document everything, design for handoff, and build things your team can actually maintain.' },
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+export default function AboutPage({ setPage }) {
+
+  return (
+    <div style={{ background: C.bg, minHeight: '100vh' }}>
+
+      {/* ── HERO BAND ────────────────────────────────────────────────────── */}
+      <div style={{
+        background: C.bgDeep,
+        padding: '130px 48px 100px',
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
+        <GridTexture dark />
+        <Orbs variant="dark" />
+
+        {/* Animated ring */}
+        <div style={{
+          position:'absolute',width:600,height:600,borderRadius:'50%',
+          border:'1px solid rgba(45,180,148,0.07)',
+          top:'50%',left:'50%',transform:'translate(-50%,-50%)',zIndex:0,
+          animation:'spinSlow 40s linear infinite',
+        }}/>
+
+        <div style={{ maxWidth:1100, margin:'0 auto', position:'relative', zIndex:1 }}>
+          <button
+            onClick={()=>setPage('home')}
+            style={{
+              background:'none',border:'none',cursor:'pointer',
+              color:'rgba(255,255,255,0.35)',fontSize:13,
+              fontFamily:"'DM Sans',sans-serif",
+              display:'flex',alignItems:'center',gap:6,marginBottom:36,
+              transition:'color .2s',
+            }}
+            onMouseEnter={e=>e.currentTarget.style.color='rgba(255,255,255,.65)'}
+            onMouseLeave={e=>e.currentTarget.style.color='rgba(255,255,255,.35)'}
+          >
+            <ChevronRight size={13} style={{transform:'rotate(180deg)'}}/> Back to Home
+          </button>
+
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:80, alignItems:'center' }}>
+            {/* Left: text */}
+            <div>
+              <span style={{
+                display:'inline-block',padding:'5px 16px',borderRadius:20,
+                background: C.tealSoft, border:`1px solid ${C.tealBorder}`,
+                color:C.teal, fontSize:11, letterSpacing:'0.14em',
+                textTransform:'uppercase', fontFamily:"'DM Sans',sans-serif",
+                fontWeight:600, marginBottom:20,
+              }}>About Me</span>
+
+              <h1 style={{
+                fontFamily:"'Playfair Display',serif",
+                fontSize:'clamp(36px,5.5vw,64px)',
+                color:'#fff', lineHeight:1.1, marginBottom:24,
+                letterSpacing:'-0.02em',
+              }}>
+                I build the systems<br/>
+                <span style={{
+                  background:'linear-gradient(135deg,#2db494,#6ee8cc)',
+                  WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent',
+                }}>
+                  that free founders.
+                </span>
+              </h1>
+
+              <p style={{
+                color:'rgba(255,255,255,0.58)',fontSize:17,lineHeight:1.85,
+                fontFamily:"'DM Sans',sans-serif",marginBottom:36,
+              }}>
+                I'm Eunice — founder of Safibase, business systems designer, and the person
+                who turns operational chaos into clean, scalable infrastructure. Based in Toronto,
+                working with service businesses globally.
+              </p>
+
+              <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
+                <button
+                  onClick={()=>setPage('contact')}
+                  style={{
+                    padding:'13px 28px',borderRadius:11,background:C.teal,
+                    color:'#fff',fontWeight:600,border:'none',cursor:'pointer',
+                    fontSize:14,fontFamily:"'DM Sans',sans-serif",
+                    display:'inline-flex',alignItems:'center',gap:8,transition:'all .22s',
+                  }}
+                  onMouseEnter={e=>{e.currentTarget.style.background=C.tealDark;e.currentTarget.style.transform='translateY(-1px)';}}
+                  onMouseLeave={e=>{e.currentTarget.style.background=C.teal;e.currentTarget.style.transform='none';}}
+                >
+                  Work With Me <ArrowRight size={15}/>
+                </button>
+                <a
+                  href="/resume.pdf" download
+                  style={{
+                    padding:'13px 24px',borderRadius:11,
+                    border:'1.5px solid rgba(255,255,255,0.18)',
+                    background:'rgba(255,255,255,0.06)',
+                    color:'rgba(255,255,255,0.8)',fontWeight:500,
+                    fontSize:14,fontFamily:"'DM Sans',sans-serif",
+                    textDecoration:'none',display:'inline-flex',
+                    alignItems:'center',gap:8,transition:'all .22s',
+                  }}
+                  onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.38)';e.currentTarget.style.background='rgba(255,255,255,.1)';}}
+                  onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.18)';e.currentTarget.style.background='rgba(255,255,255,.06)';}}
+                >
+                  <Download size={15}/> Download CV
+                </a>
+              </div>
+            </div>
+
+            {/* Right: photo + quick facts */}
+            <div style={{ display:'flex', flexDirection:'column', gap:20, alignItems:'center' }}>
+              <div style={{ position:'relative' }}>
+                <img
+                  src="/portme.png"
+                  alt="Eunice Gichuhi"
+                  style={{
+                    width:260,height:320,objectFit:'cover',
+                    borderRadius:20,display:'block',
+                    boxShadow:'0 24px 60px rgba(0,0,0,0.5)',
+                  }}
+                />
+                {/* Teal offset frame */}
+                <div style={{
+                  position:'absolute',inset:0,borderRadius:20,
+                  border:`2px solid ${C.teal}`,
+                  transform:'translate(10px,10px)',zIndex:-1,opacity:.35,
+                }}/>
+                {/* Floating badge */}
+                <div style={{
+                  position:'absolute',bottom:-16,right:-16,
+                  padding:'10px 18px',borderRadius:12,
+                  background:'#fff',boxShadow:C.shadowMd,
+                  display:'flex',alignItems:'center',gap:8,
+                }}>
+                  <div style={{width:8,height:8,borderRadius:'50%',background:C.teal,boxShadow:`0 0 8px ${C.teal}`,animation:'pulse 2s infinite'}}/>
+                  <span style={{color:C.textDark,fontSize:12,fontFamily:"'DM Sans',sans-serif",fontWeight:600}}>Available for projects</span>
+                </div>
+              </div>
+
+              {/* Quick facts pill row */}
+              <div style={{ display:'flex', flexWrap:'wrap', gap:10, justifyContent:'center', maxWidth:300 }}>
+                {[
+                  { icon:<MapPin size={12}/>,    text:'Toronto, ON' },
+                  { icon:<Briefcase size={12}/>, text:'Founder, Safibase' },
+                ].map((f,i) => (
+                  <div key={i} style={{
+                    display:'flex',alignItems:'center',gap:7,
+                    padding:'7px 14px',borderRadius:20,
+                    background:'rgba(255,255,255,0.07)',
+                    border:'1px solid rgba(255,255,255,0.12)',
+                    color:'rgba(255,255,255,0.65)',
+                    fontSize:12,fontFamily:"'DM Sans',sans-serif",
+                  }}>
+                    <span style={{color:C.teal}}>{f.icon}</span>{f.text}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── MY STORY ─────────────────────────────────────────────────────── */}
+      <section style={{ padding:'100px 0', background:C.bg, position:'relative', overflow:'hidden' }}>
+        <Orbs/>
+        <GridTexture/>
+        <div style={{ maxWidth:1100, margin:'0 auto', padding:'0 48px', position:'relative', zIndex:1 }}>
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1.5fr', gap:80, alignItems:'start' }}>
+
+            {/* Sticky label side */}
+            <FadeSection>
+              <div style={{ position:'sticky', top:120 }}>
+                <span style={{
+                  display:'inline-block',padding:'5px 16px',borderRadius:20,
+                  background:C.tealSoft,border:`1px solid ${C.tealBorder}`,
+                  color:C.teal,fontSize:11,letterSpacing:'0.14em',
+                  textTransform:'uppercase',fontFamily:"'DM Sans',sans-serif",
+                  fontWeight:600,marginBottom:20,
+                }}>My Story</span>
+                <h2 style={{
+                  fontFamily:"'Playfair Display',serif",
+                  fontSize:'clamp(28px,3.5vw,42px)',
+                  color:C.textDark,lineHeight:1.2,marginBottom:24,
+                }}>
+                  From engineering<br/>labs to business<br/>systems.
+                </h2>
+                <div style={{
+                  width:48,height:3,
+                  background:`linear-gradient(90deg,${C.teal},${C.cognac})`,
+                  borderRadius:2,
+                }}/>
+              </div>
+            </FadeSection>
+
+            {/* Story paragraphs */}
+            <div style={{ display:'flex', flexDirection:'column', gap:28 }}>
+              {[
+                `I started out studying Nanotechnology Engineering at the University of Waterloo — building computational models for drug delivery systems, synthesizing upconversion nanoparticles in the lab, and learning the kind of precision thinking that comes from working at the nanoscale. That background taught me something I apply every day: complex systems only work when every variable is understood and controlled.`,
+                `Along the way I started working in operations and data roles — at a recycling technology company, a telecom giant, a music analytics startup. Each one reinforced the same pattern: businesses were drowning in manual work, disconnected tools, and invisible data. The problem wasn't ambition or effort. It was the absence of good systems.`,
+                `So I founded Safibase. The name comes from "safi" (Swahili for clean) — because that's exactly what I build: clean, well-structured systems that make operations transparent and teams more capable. Today I design CRM pipelines, automation workflows, real-time dashboards, and business websites for service businesses across North America.`,
+                `I believe the best infrastructure is invisible. When your systems work, you don't think about them — you just get more done. That's what I'm here to build for you.`,
+              ].map((para, i) => (
+                <FadeSection key={i} delay={i * 0.08}>
+                  <p style={{
+                    color: i === 0 ? C.textMid : C.textDim,
+                    fontSize: i === 0 ? 17 : 16,
+                    lineHeight:1.9,
+                    fontFamily:"'DM Sans',sans-serif",
+                    fontWeight: i === 0 ? 400 : 300,
+                  }}>{para}</p>
+                </FadeSection>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── VALUES ───────────────────────────────────────────────────────── */}
+      <section style={{ padding:'100px 0', background:C.bgAlt, position:'relative', overflow:'hidden' }}>
+        <GridTexture/>
+        <div style={{ maxWidth:1100, margin:'0 auto', padding:'0 48px', position:'relative', zIndex:1 }}>
+          <FadeSection>
+            <div style={{ textAlign:'center', marginBottom:68 }}>
+              <span style={{
+                display:'inline-block',padding:'5px 16px',borderRadius:20,
+                background:C.cognacSoft,border:`1px solid rgba(196,98,45,0.25)`,
+                color:C.cognac,fontSize:11,letterSpacing:'0.14em',
+                textTransform:'uppercase',fontFamily:"'DM Sans',sans-serif",
+                fontWeight:600,marginBottom:16,
+              }}>How I Work</span>
+              <h2 style={{ fontFamily:"'Playfair Display',serif",fontSize:'clamp(28px,4vw,42px)',color:C.textDark }}>Principles I Build By</h2>
+            </div>
+          </FadeSection>
+
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(240px,1fr))', gap:22 }}>
+            {values.map((v,i) => (
+              <FadeSection key={i} delay={i * 0.08}>
+                <div style={{
+                  padding:'34px 28px',borderRadius:20,
+                  background:C.bgCard,border:`1px solid ${C.border}`,
+                  boxShadow:C.shadow,
+                  transition:'all .28s cubic-bezier(.22,1,.36,1)',
+                  position:'relative',overflow:'hidden',
+                }}
+                  onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-5px)';e.currentTarget.style.boxShadow=C.shadowLg;}}
+                  onMouseLeave={e=>{e.currentTarget.style.transform='none';e.currentTarget.style.boxShadow=C.shadow;}}
+                >
+                  <div style={{ position:'absolute',top:0,right:0,width:80,height:80,borderRadius:'0 20px 0 80px',background:`${C.teal}06`,pointerEvents:'none' }}/>
+                  <div style={{
+                    width:50,height:50,borderRadius:13,
+                    background:C.tealSoft,border:`1px solid ${C.tealBorder}`,
+                    display:'flex',alignItems:'center',justifyContent:'center',
+                    color:C.teal,marginBottom:20,
+                  }}>{v.icon}</div>
+                  <h3 style={{ fontFamily:"'Playfair Display',serif",color:C.textDark,fontSize:18,marginBottom:10 }}>{v.title}</h3>
+                  <p style={{ color:C.textDim,fontSize:14,lineHeight:1.75,fontFamily:"'DM Sans',sans-serif" }}>{v.desc}</p>
+                  <div style={{ width:28,height:2,background:C.teal,borderRadius:2,marginTop:18 }}/>
+                </div>
+              </FadeSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SKILLS ───────────────────────────────────────────────────────── */}
+      <section style={{ padding:'100px 0', background:C.bg, position:'relative', overflow:'hidden' }}>
+        <Orbs/>
+        <div style={{ maxWidth:1100, margin:'0 auto', padding:'0 48px', position:'relative', zIndex:1 }}>
+          <FadeSection>
+            <div style={{ marginBottom:64 }}>
+              <span style={{
+                display:'inline-block',padding:'5px 16px',borderRadius:20,
+                background:C.tealSoft,border:`1px solid ${C.tealBorder}`,
+                color:C.teal,fontSize:11,letterSpacing:'0.14em',
+                textTransform:'uppercase',fontFamily:"'DM Sans',sans-serif",
+                fontWeight:600,marginBottom:16,
+              }}>Toolkit</span>
+              <h2 style={{ fontFamily:"'Playfair Display',serif",fontSize:'clamp(28px,4vw,42px)',color:C.textDark }}>Skills & Technologies</h2>
+            </div>
+          </FadeSection>
+
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(260px,1fr))', gap:22 }}>
+            {skills.map((group, i) => (
+              <FadeSection key={i} delay={i * 0.07}>
+                <div style={{
+                  padding:'28px',borderRadius:18,
+                  background:C.bgCard,border:`1px solid ${C.border}`,
+                  boxShadow:C.shadow,
+                  transition:'all .28s cubic-bezier(.22,1,.36,1)',
+                }}
+                  onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow=C.shadowMd;}}
+                  onMouseLeave={e=>{e.currentTarget.style.transform='none';e.currentTarget.style.boxShadow=C.shadow;}}
+                >
+                  <h3 style={{
+                    fontFamily:"'DM Sans',sans-serif",fontWeight:600,
+                    color:C.textDark,fontSize:13,letterSpacing:'0.08em',
+                    textTransform:'uppercase',marginBottom:16,
+                  }}>{group.group}</h3>
+                  <div style={{ display:'flex', flexWrap:'wrap', gap:8 }}>
+                    {group.items.map((skill,j) => (
+                      <span key={j} style={{
+                        padding:'5px 12px',borderRadius:8,
+                        background:C.bgAlt,border:`1px solid ${C.border}`,
+                        color:C.textMid,fontSize:13,
+                        fontFamily:"'DM Sans',sans-serif",
+                        transition:'all .18s',cursor:'default',
+                      }}
+                        onMouseEnter={e=>{e.currentTarget.style.background=C.tealSoft;e.currentTarget.style.color=C.teal;e.currentTarget.style.borderColor=C.tealBorder;}}
+                        onMouseLeave={e=>{e.currentTarget.style.background=C.bgAlt;e.currentTarget.style.color=C.textMid;e.currentTarget.style.borderColor=C.border;}}
+                      >{skill}</span>
+                    ))}
+                  </div>
+                </div>
+              </FadeSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── TIMELINE ─────────────────────────────────────────────────────── */}
+      <section style={{ padding:'100px 0', background:C.bgAlt, position:'relative', overflow:'hidden' }}>
+        <GridTexture/>
+        <div style={{ maxWidth:900, margin:'0 auto', padding:'0 48px', position:'relative', zIndex:1 }}>
+          <FadeSection>
+            <div style={{ marginBottom:64 }}>
+              <span style={{
+                display:'inline-block',padding:'5px 16px',borderRadius:20,
+                background:C.cognacSoft,border:`1px solid rgba(196,98,45,0.25)`,
+                color:C.cognac,fontSize:11,letterSpacing:'0.14em',
+                textTransform:'uppercase',fontFamily:"'DM Sans',sans-serif",
+                fontWeight:600,marginBottom:16,
+              }}>Career</span>
+              <h2 style={{ fontFamily:"'Playfair Display',serif",fontSize:'clamp(28px,4vw,42px)',color:C.textDark }}>The Journey</h2>
+            </div>
+          </FadeSection>
+
+          {/* Vertical timeline */}
+          <div style={{ position:'relative' }}>
+            {/* Track line */}
+            <div style={{
+              position:'absolute',left:21,top:6,bottom:6,width:2,
+              background:`linear-gradient(to bottom,${C.teal},rgba(45,180,148,0.04))`,
+              borderRadius:2,
+            }}/>
+
+            <div style={{ display:'flex', flexDirection:'column', gap:0 }}>
+              {timeline.map((item, i) => (
+                <FadeSection key={i} delay={i * 0.07}>
+                  <div style={{ paddingLeft:64, paddingBottom: i < timeline.length-1 ? 48 : 0, position:'relative' }}>
+                    {/* Dot */}
+                    <div style={{
+                      position:'absolute',left:13,top:6,
+                      width:18,height:18,borderRadius:'50%',
+                      background:item.color,
+                      border:`3px solid ${C.bgAlt}`,
+                      boxShadow:`0 0 0 3px ${item.color}30, 0 4px 12px ${item.color}40`,
+                      zIndex:1,
+                    }}/>
+
+                    <div style={{
+                      background:C.bgCard,border:`1px solid ${C.border}`,
+                      borderRadius:16,padding:'24px 28px',
+                      boxShadow:C.shadow,
+                      transition:'all .28s cubic-bezier(.22,1,.36,1)',
+                    }}
+                      onMouseEnter={e=>{e.currentTarget.style.transform='translateX(4px)';e.currentTarget.style.borderColor=`${item.color}40`;e.currentTarget.style.boxShadow=C.shadowMd;}}
+                      onMouseLeave={e=>{e.currentTarget.style.transform='none';e.currentTarget.style.borderColor=C.border;e.currentTarget.style.boxShadow=C.shadow;}}
+                    >
+                      <div style={{ display:'flex', flexWrap:'wrap', justifyContent:'space-between', gap:10, marginBottom:8 }}>
+                        <div>
+                          <h3 style={{ fontFamily:"'Playfair Display',serif",color:C.textDark,fontSize:18,margin:'0 0 3px' }}>{item.role}</h3>
+                          <p style={{ color:item.color,fontSize:13,margin:0,fontFamily:"'DM Sans',sans-serif",fontWeight:500 }}>{item.org}</p>
+                        </div>
+                        <div style={{
+                          display:'flex',alignItems:'center',gap:6,
+                          padding:'5px 13px',borderRadius:20,
+                          background:C.bgAlt,border:`1px solid ${C.border}`,
+                          alignSelf:'flex-start',
+                        }}>
+                          <span style={{ color:C.textDim,fontSize:11,fontFamily:"'DM Sans',sans-serif" }}>{item.year}</span>
+                        </div>
+                      </div>
+                      <p style={{ color:C.textDim,fontSize:13,lineHeight:1.75,fontFamily:"'DM Sans',sans-serif",margin:0 }}>{item.desc}</p>
+                    </div>
+                  </div>
+                </FadeSection>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SOCIAL / CTA ─────────────────────────────────────────────────── */}
+      <section style={{ padding:'100px 48px', background:C.bgDeep, textAlign:'center', position:'relative', overflow:'hidden' }}>
+        <GridTexture dark/>
+        <Orbs variant="dark"/>
+        <div style={{ position:'relative', zIndex:1 }}>
+          <h2 style={{ fontFamily:"'Playfair Display',serif",fontSize:'clamp(26px,4vw,46px)',color:'#fff',marginBottom:14,maxWidth:640,margin:'0 auto 14px',lineHeight:1.2 }}>
+            Let's build something that works.
+          </h2>
+          <p style={{ color:'rgba(255,255,255,0.45)',fontSize:16,marginBottom:40,fontFamily:"'DM Sans',sans-serif",maxWidth:420,margin:'0 auto 40px',lineHeight:1.75 }}>
+            Whether it's a CRM, an automation, a dashboard, or a full website — I'm here for it.
+          </p>
+          <div style={{ display:'flex', gap:14, justifyContent:'center', flexWrap:'wrap', marginBottom:40 }}>
+            <button
+              onClick={()=>setPage('contact')}
+              style={{
+                padding:'14px 32px',borderRadius:12,background:C.teal,
+                color:'#fff',fontWeight:600,border:'none',cursor:'pointer',
+                fontSize:15,fontFamily:"'DM Sans',sans-serif",
+                display:'inline-flex',alignItems:'center',gap:8,transition:'all .22s',
+              }}
+              onMouseEnter={e=>{e.currentTarget.style.background=C.tealDark;e.currentTarget.style.transform='translateY(-1px)';}}
+              onMouseLeave={e=>{e.currentTarget.style.background=C.teal;e.currentTarget.style.transform='none';}}
+            >
+              Book a Discovery Call <ArrowRight size={15}/>
+            </button>
+            <button
+              onClick={()=>setPage('work')}
+              style={{
+                padding:'14px 28px',borderRadius:12,
+                border:'1.5px solid rgba(255,255,255,0.2)',
+                background:'rgba(255,255,255,0.07)',
+                color:'rgba(255,255,255,0.8)',
+                fontWeight:500,cursor:'pointer',
+                fontSize:15,fontFamily:"'DM Sans',sans-serif",transition:'all .22s',
+              }}
+              onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.4)';e.currentTarget.style.background='rgba(255,255,255,.12)';}}
+              onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.2)';e.currentTarget.style.background='rgba(255,255,255,.07)';}}
+            >
+              View My Work
+            </button>
+          </div>
+
+          {/* Social links */}
+          <div style={{ display:'flex', gap:12, justifyContent:'center' }}>
+            {[
+              { href:'https://github.com/EGichuhi', icon:<Github size={16}/> },
+              { href:'https://www.linkedin.com/in/eunicegichuhi/', icon:<Linkedin size={16}/> },
+              { href:'mailto:eunice.gwanja@gmail.com', icon:<Mail size={16}/> },
+            ].map((s,i) => (
+              <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
+                style={{
+                  width:40,height:40,borderRadius:10,
+                  display:'flex',alignItems:'center',justifyContent:'center',
+                  background:'rgba(255,255,255,0.07)',
+                  border:'1px solid rgba(255,255,255,0.12)',
+                  color:'rgba(255,255,255,0.5)',textDecoration:'none',transition:'all .2s',
+                }}
+                onMouseEnter={e=>{e.currentTarget.style.color=C.teal;e.currentTarget.style.borderColor=C.tealBorder;e.currentTarget.style.background='rgba(45,180,148,0.12)';}}
+                onMouseLeave={e=>{e.currentTarget.style.color='rgba(255,255,255,.5)';e.currentTarget.style.borderColor='rgba(255,255,255,.12)';e.currentTarget.style.background='rgba(255,255,255,.07)';}}
+              >{s.icon}</a>
+            ))}
+          </div>
         </div>
       </section>
     </div>
