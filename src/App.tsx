@@ -1148,7 +1148,7 @@ function WorkPage({ setPage }) {
 
   const projects = [
     {title:'PLGA Coating Drug Optimization Model',year:'2026',desc:'Computational model for optimizing PLGA polymer coating parameters — balancing release kinetics, degradation rate, and biocompatibility.',image:'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80',technologies:['Python','COMSOL','MATLAB','Drug Delivery'],link:'#',category:'Research'},
-    {title:'NaYF₄:Yb,Er@NaYF₄ NP Upconversion',year:'2025',desc:'Lab research and prototype development for core-shell upconversion nanoparticles — NIR-to-visible photon upconversion applications.',image:' labdev.png auto=format&fit=crop&q=80',technologies:['Nanoparticle Synthesis','Spectroscopy','MATLAB','Materials Science'],link:'#',category:'Research'},
+    {title:'NaYF₄:Yb,Er@NaYF₄ NP Upconversion',year:'2025',desc:'Lab research and prototype development for core-shell upconversion nanoparticles — NIR-to-visible photon upconversion applications.',image:' labdev.jpg auto=format&fit=crop&q=80',technologies:['Nanoparticle Synthesis','Spectroscopy','MATLAB','Materials Science'],link:'#',category:'Research'},
     {title:'Smart Farming AI Initiative',year:'2024',desc:'AI solutions for sustainable agriculture in Kano State, Nigeria.',image:'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&q=80',technologies:['Python','AI','Data Analytics','ML'],link:'https://www.omdena.com/chapter-challenges/smart-farming-using-ai-for-sustainable-agriculture-in-kano-state-nigeria',category:'Data'},
     {title:'Public Transport Accessibility',year:'2024',desc:'Transport data analysis to improve accessibility for people with disabilities in Nairobi.',image:'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80',technologies:['Python','Git','Data Analytics'],link:'https://www.omdena.com/chapter-challenges/enhancing-public-transport-accessibility-for-insivible-disabilities-in-nairobi',category:'Data'},
     {title:'Customer Analysis & Product Insights',year:'2023',desc:'Advanced EDA analyzing customer behavior and sales trends across product lines.',image:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80',technologies:['Python','Jupyter','Data Visualization'],link:'https://github.com/EGichuhi/Customer_data_analysis',category:'Data'},
@@ -1213,7 +1213,7 @@ function WorkPage({ setPage }) {
         
         <div style={{position:'relative', aspectRatio:'16/9', overflow:'hidden'}}>
           <img 
-            src="webdev.jpeg"
+            src="webdev.jpg"
             alt={p.title} 
             style={{width:'100%', height:'100%', objectFit:'cover', transition:'transform 0.6s'}}
             onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
