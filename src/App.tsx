@@ -554,16 +554,6 @@ function HomePage({ setPage }) {
     </div>
   );
 }
-// ─────────────────────────────────────────────────────────────────────────────
-// AboutPage.jsx  — drop into your Safibase portfolio alongside your other pages
-//
-// HOW TO USE:
-//  1. Import this component in App.jsx:
-//       import AboutPage from './AboutPage';
-//  2. Add 'about' to your nav links array
-//  3. Add the route in your page-switch block:
-//       {page === 'about' && <AboutPage setPage={setPage}/>}
-// ─────────────────────────────────────────────────────────────────────────────
 
 // ── Intersection-observer fade-up hook ────────────────────────────────────────
 function useFadeUp() {
@@ -708,12 +698,12 @@ function AboutPage({ setPage }) {
                 color:'#fff', lineHeight:1.1, marginBottom:24,
                 letterSpacing:'-0.02em',
               }}>
-                I build the systems<br/>
+                Hi, I'm Eunice<br/>
                 <span style={{
                   background:'linear-gradient(135deg,#2db494,#6ee8cc)',
                   WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent',
                 }}>
-                  that free founders.
+                  I build systems that free you.
                 </span>
               </h1>
 
@@ -721,9 +711,10 @@ function AboutPage({ setPage }) {
                 color:'rgba(255,255,255,0.58)',fontSize:17,lineHeight:1.85,
                 fontFamily:"'DM Sans',sans-serif",marginBottom:36,
               }}>
-                I'm Eunice — founder of Safibase, business systems designer, and the person
-                who turns operational chaos into clean, scalable infrastructure. Based in Toronto,
-                working with service businesses globally.
+                INanotechnology engineer by training. Business systems designer by choice.
+                I founded Safibase to give service businesses the infrastructure they
+                actually need — so the work runs, even when you're not watching it.
+                Based in Toronto, building for founders across North America.
               </p>
 
               <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
@@ -763,7 +754,7 @@ function AboutPage({ setPage }) {
             <div style={{ display:'flex', flexDirection:'column', gap:20, alignItems:'center' }}>
               <div style={{ position:'relative' }}>
                 <img
-                  src="/portme.png"
+                  src="/eunice-pro.jpeg"
                   alt="Eunice Gichuhi"
                   style={{
                     width:260,height:320,objectFit:'cover',
@@ -785,7 +776,7 @@ function AboutPage({ setPage }) {
                   display:'flex',alignItems:'center',gap:8,
                 }}>
                   <div style={{width:8,height:8,borderRadius:'50%',background:C.teal,boxShadow:`0 0 8px ${C.teal}`,animation:'pulse 2s infinite'}}/>
-                  <span style={{color:C.textDark,fontSize:12,fontFamily:"'DM Sans',sans-serif",fontWeight:600}}>Available for projects</span>
+                  <span style={{color:C.textDark,fontSize:12,fontFamily:"'DM Sans',sans-serif",fontWeight:600}}><span ...>Taking on new clients — let's talk</span></span>
                 </div>
               </div>
 
@@ -820,38 +811,65 @@ function AboutPage({ setPage }) {
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1.5fr', gap:80, alignItems:'start' }}>
 
             {/* Sticky label side */}
-            <FadeSection>
-              <div style={{ position:'sticky', top:120 }}>
-                <span style={{
-                  display:'inline-block',padding:'5px 16px',borderRadius:20,
-                  background:C.tealSoft,border:`1px solid ${C.tealBorder}`,
-                  color:C.teal,fontSize:11,letterSpacing:'0.14em',
-                  textTransform:'uppercase',fontFamily:"'DM Sans',sans-serif",
-                  fontWeight:600,marginBottom:20,
-                }}>My Story</span>
-                <h2 style={{
-                  fontFamily:"'Playfair Display',serif",
-                  fontSize:'clamp(28px,3.5vw,42px)',
-                  color:C.textDark,lineHeight:1.2,marginBottom:24,
-                }}>
-                  From engineering<br/>labs to business<br/>systems.
-                </h2>
-                <div style={{
-                  width:48,height:3,
-                  background:`linear-gradient(90deg,${C.teal},${C.cognac})`,
-                  borderRadius:2,
-                }}/>
-              </div>
-            </FadeSection>
+              <FadeSection>
+                <div style={{ position:'sticky', top:120 }}>
+                  <span style={{
+                    display:'inline-block',padding:'5px 16px',borderRadius:20,
+                    background:C.tealSoft,border:`1px solid ${C.tealBorder}`,
+                    color:C.teal,fontSize:11,letterSpacing:'0.14em',
+                    textTransform:'uppercase',fontFamily:"'DM Sans',sans-serif",
+                    fontWeight:600,marginBottom:20,
+                  }}>My Story</span>
+                  <h2 style={{
+                    fontFamily:"'Playfair Display',serif",
+                    fontSize:'clamp(28px,3.5vw,42px)',
+                    color:C.textDark,lineHeight:1.2,marginBottom:24,
+                  }}>
+                    From engineering<br/>labs to business<br/>systems.
+                  </h2>
+                  <div style={{
+                    width:48,height:3,
+                    background:`linear-gradient(90deg,${C.teal},${C.cognac})`,
+                    borderRadius:2,
+                  }}/>
+              
+                  {/* Casual photo */}
+                  <div style={{ marginTop:36, position:'relative', display:'inline-block' }}>
+                    <img
+                      src="/eunice-casual.png"
+                      alt="Eunice"
+                      style={{
+                        width:200, height:240, objectFit:'cover', objectPosition:'top center',
+                        borderRadius:16, display:'block',
+                        boxShadow:'0 16px 48px rgba(60,20,5,0.15)',
+                        border:`3px solid ${C.bgAlt}`,
+                      }}
+                    />
+                    <div style={{
+                      position:'absolute', bottom:-14, left:'50%',
+                      transform:'translateX(-50%)',
+                      background:C.bgDeep, color:'rgba(255,255,255,0.7)',
+                      fontSize:11, padding:'5px 14px', borderRadius:20,
+                      fontFamily:"'DM Sans',sans-serif", whiteSpace:'nowrap',
+                      letterSpacing:'0.06em',
+                    }}>
+                      Waterloo → Toronto → Safibase
+                    </div>
+                  </div>
+              
+                </div>
+              </FadeSection>
 
             {/* Story paragraphs */}
             <div style={{ display:'flex', flexDirection:'column', gap:28 }}>
               {[
-                `I started out studying Nanotechnology Engineering at the University of Waterloo — building computational models for drug delivery systems, synthesizing upconversion nanoparticles in the lab, and learning the kind of precision thinking that comes from working at the nanoscale. That background taught me something I apply every day: complex systems only work when every variable is understood and controlled.`,
-                `Along the way I started working in operations and data roles — at a recycling technology company, a telecom giant, a music analytics startup. Each one reinforced the same pattern: businesses were drowning in manual work, disconnected tools, and invisible data. The problem wasn't ambition or effort. It was the absence of good systems.`,
-                `So I founded Safibase. The name comes from "safi" (Swahili for clean) — because that's exactly what I build: clean, well-structured systems that make operations transparent and teams more capable. Today I design CRM pipelines, automation workflows, real-time dashboards, and business websites for service businesses across North America.`,
-                `I believe the best infrastructure is invisible. When your systems work, you don't think about them — you just get more done. That's what I'm here to build for you.`,
-              ].map((para, i) => (
+                `I'm Eunice — a Nanotechnology Engineering student at the University of Waterloo who spent years in labs building computational models for drug delivery and synthesizing nanoparticles at the nanoscale. That kind of work teaches you something most people don't expect: precision isn't just for science. Every system, whether molecular or operational, only works when every variable is understood and controlled.`,
+
+`Working across startups, a telecom giant, and a recycling tech company showed me the same problem everywhere: talented people drowning in spreadsheets, disconnected tools, and processes held together with duct tape. Not for lack of trying — but because no one had built them the right infrastructure.`,
+
+`That's why I started Safibase. "Safi" means clean in Swahili — and clean is exactly what I build. Lean CRM pipelines, automations that run while you sleep, dashboards that make decisions obvious, and websites that convert. For service business owners who are too busy to be stuck doing admin.`,
+
+`I work with a small number of clients at a time so every system I build actually gets my full attention. If you're ready to stop duct-taping your operations together — let's talk.`,].map((para, i) => (
                 <FadeSection key={i} delay={i * 0.08}>
                   <p style={{
                     color: i === 0 ? C.textMid : C.textDim,
@@ -913,7 +931,28 @@ function AboutPage({ setPage }) {
           </div>
         </div>
       </section>
-
+{/* Personal note */}
+<FadeSection delay={0.3}>
+  <div style={{
+    marginTop: 48, padding: '32px 36px', borderRadius: 20,
+    background: C.bgDeep, border: `1px solid rgba(45,180,148,0.2)`,
+    boxShadow: C.shadowMd, display: 'flex', gap: 24, alignItems: 'center',
+    flexWrap: 'wrap',
+  }}>
+    <img
+      src="/eunice-pro.jpeg"
+      alt="Eunice"
+      style={{ width: 64, height: 64, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', border: `2px solid ${C.teal}`, flexShrink: 0 }}
+    />
+    <div>
+      <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 15.5, lineHeight: 1.8, fontFamily: "'DM Sans',sans-serif", fontStyle: 'italic', margin: '0 0 8px' }}>
+        "I take on a small number of clients at a time — because I'd rather build
+        one system that actually works than ten that don't."
+      </p>
+      <span style={{ color: C.teal, fontSize: 13, fontFamily: "'DM Sans',sans-serif", fontWeight: 600 }}>— Eunice, Founder of Safibase</span>
+    </div>
+  </div>
+</FadeSection>
       {/* ── SKILLS ───────────────────────────────────────────────────────── */}
       <section style={{ padding:'100px 0', background:C.bg, position:'relative', overflow:'hidden' }}>
         <Orbs/>
