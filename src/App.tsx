@@ -565,74 +565,6 @@ function HomePage({ setPage }) {
 //       {page === 'about' && <AboutPage setPage={setPage}/>}
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { useEffect, useRef, useState } from 'react';
-import {
-  MapPin, Briefcase, ArrowRight, ChevronRight,
-  Zap, BarChart2, Globe, Layers, ExternalLink,
-  Github, Linkedin, Mail, Download
-} from 'lucide-react';
-
-// ── Reuse the same palette as your main site ─────────────────────────────────
-const C = {
-  bg:          '#fdf6ee',
-  bgAlt:       '#f5ead8',
-  bgCard:      '#ffffff',
-  bgCardWarm:  '#fef9f3',
-  bgDeep:      '#3d1f0e',
-  bgDeepMid:   '#4e2a14',
-  cream:       '#fdf6ee',
-  textDark:    '#2c1505',
-  textMid:     '#6b3a1f',
-  textDim:     '#a06040',
-  teal:        '#2db494',
-  tealDark:    '#1e9478',
-  tealSoft:    'rgba(45,180,148,0.12)',
-  tealBorder:  'rgba(45,180,148,0.3)',
-  cognac:      '#c4622d',
-  cognacSoft:  'rgba(196,98,45,0.1)',
-  border:      'rgba(100,50,20,0.1)',
-  borderMed:   'rgba(100,50,20,0.18)',
-  shadow:      '0 4px 24px rgba(60,20,5,0.08)',
-  shadowMd:    '0 8px 40px rgba(60,20,5,0.12)',
-  shadowLg:    '0 20px 60px rgba(60,20,5,0.16)',
-};
-
-// ── Reusable helpers (mirrors your main file) ─────────────────────────────────
-function Orbs({ variant = 'light' }) {
-  const orbs = variant === 'dark'
-    ? [
-        { w:500,h:500,top:'-15%',right:'-10%',bg:'rgba(45,180,148,0.12)' },
-        { w:380,h:380,bottom:'-10%',left:'-8%',bg:'rgba(196,98,45,0.15)' },
-      ]
-    : [
-        { w:600,h:600,top:'-20%',right:'-15%',bg:'rgba(45,180,148,0.07)' },
-        { w:400,h:400,bottom:'-5%',left:'-8%',bg:'rgba(196,98,45,0.08)' },
-      ];
-  return (
-    <>
-      {orbs.map((o,i) => (
-        <div key={i} style={{
-          position:'absolute',width:o.w,height:o.h,borderRadius:'50%',
-          top:o.top,right:o.right,bottom:o.bottom,left:o.left,
-          background:`radial-gradient(circle,${o.bg} 0%,transparent 70%)`,
-          pointerEvents:'none',zIndex:0,
-        }}/>
-      ))}
-    </>
-  );
-}
-
-function GridTexture({ dark=false }) {
-  const c = dark ? 'rgba(255,255,255,0.03)' : 'rgba(100,50,20,0.04)';
-  return (
-    <div style={{
-      position:'absolute',inset:0,zIndex:0,pointerEvents:'none',
-      backgroundImage:`linear-gradient(${c} 1px,transparent 1px),linear-gradient(90deg,${c} 1px,transparent 1px)`,
-      backgroundSize:'56px 56px',
-    }}/>
-  );
-}
-
 // ── Intersection-observer fade-up hook ────────────────────────────────────────
 function useFadeUp() {
   const ref = useRef(null);
@@ -720,7 +652,7 @@ const values = [
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-export default function AboutPage({ setPage }) {
+function AboutPage({ setPage }) {
 
   return (
     <div style={{ background: C.bg, minHeight: '100vh' }}>
@@ -1676,6 +1608,7 @@ export default function App() {
       <ProgressBar/>
       <Nav page={page} setPage={setPage} cartCount={cartCount}/>
       {page==='home'    && <HomePage    setPage={setPage}/>}
+      {page==='about'   && <AboutPage   setPage={setPage}/>} 
       {page==='work'    && <WorkPage    setPage={setPage}/>}
       {page==='contact' && <ContactPage setPage={setPage}/>}
       <Footer setPage={setPage}/>
