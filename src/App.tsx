@@ -776,8 +776,7 @@ function AboutPage({ setPage }) {
                   display:'flex',alignItems:'center',gap:8,
                 }}>
                   <div style={{width:8,height:8,borderRadius:'50%',background:C.teal,boxShadow:`0 0 8px ${C.teal}`,animation:'pulse 2s infinite'}}/>
-                  <span style={{color:C.textDark,fontSize:12,fontFamily:"'DM Sans',sans-serif",fontWeight:600}}><span ...>Taking on new clients — let's talk</span></span>
-                </div>
+                  <span style={{color:C.textDark,fontSize:12,fontFamily:"'DM Sans',sans-serif",fontWeight:600}}>Taking on new clients — let's talk</span>                </div>
               </div>
 
               {/* Quick facts pill row */}
@@ -1602,23 +1601,23 @@ function ContactPage() {
 // ─── WEB PROJECTS DATA (modal) ─────────────────────────────────────────────
 const webProjectsFull = [
   {
-    title:'Kalog Drywall',
-    description:'Professional website for a drywall company — modern design, responsive layout.',
-    image:'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80',
-    technologies:['HTML','CSS','JavaScript','Responsive Design'],
-    link:'http://www.kalogadrywall.com',
-    badge:'Live Site',
-    isInternal:false,
-  },
-  {
-    title:'Tech Blog',
-    description:'A full editorial blog platform for sharing systems thinking, automation strategy, and engineering research.',
-    image:'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80',
+    title:'Coaching',
+    description:'Kariuki Socials helps businesses show up online in a way that feels real, clear, and connected to their audience.',
+    image:'public/kariukisocial.png',
     technologies:['React','Tag Filtering','Full Article Reader','Dark Hero'],
     link:'#',
     badge:'Built Here',
     isInternal:true,
     internalPage:'blog',
+  },
+  {
+    title:'Kaloga Drywall',
+    description:'Kaloga Drywall provides expert drywall installation and finishing services, delivering clean, durable, and high-quality interior construction solutions.',
+    image:'public/kaloga.png',
+    technologies:['HTML','CSS','JavaScript','Responsive Design'],
+    link:'http://www.kalogadrywall.com',
+    badge:'Live Site',
+    isInternal:false,
   },
   {
     title:'Digital Products Store',
