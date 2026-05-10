@@ -738,7 +738,7 @@ function AboutPage({ setPage }) {
             <div style={{ display:'flex', flexDirection:'column', gap:20, alignItems:'center' }}>
               <div style={{ position:'relative' }}>
                 <img
-                  src="/eunice-pro.jpeg"
+                  src="public/eunice-pro.jpeg"
                   alt="Eunice Gichuhi"
                   style={{
                     width:260,height:320,objectFit:'cover',
@@ -819,7 +819,7 @@ function AboutPage({ setPage }) {
                   {/* Casual photo */}
                   <div style={{ marginTop:36, position:'relative', display:'inline-block' }}>
                     <img
-                      src="/eunice-casual.png"
+                      src="public/eunice-casual.png"
                       alt="Eunice"
                       style={{
                         width:200, height:240, objectFit:'cover', objectPosition:'top center',
@@ -923,7 +923,7 @@ function AboutPage({ setPage }) {
     flexWrap: 'wrap',
   }}>
     <img
-      src="/eunice-pro.jpeg"
+      src="public/eunice-pro.jpeg"
       alt="Eunice"
       style={{ width: 64, height: 64, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', border: `2px solid ${C.teal}`, flexShrink: 0 }}
     />
