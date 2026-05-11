@@ -1470,7 +1470,7 @@ function ContactPage() {
               Prefer to talk directly?
             </span>
             <a
-              href={"https://cal.com/safibase/15min"}
+              href={"https://cal.com/safibase/discovery-call-zoom"}
               target="_blank"
               rel="noopener noreferrer"
               style={{
