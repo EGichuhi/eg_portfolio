@@ -711,7 +711,7 @@ function AboutPage({ setPage }) {
                 color:'rgba(255,255,255,0.58)',fontSize:17,lineHeight:1.85,
                 fontFamily:"'DM Sans',sans-serif",marginBottom:36,
               }}>
-                INanotechnology engineer by training. Business systems designer by choice.
+                Nanotechnology engineer by training. Business systems designer by choice.
                 I founded Safibase to give service businesses the infrastructure they
                 actually need — so the work runs, even when you're not watching it.
                 Based in Toronto, building for founders across North America.
