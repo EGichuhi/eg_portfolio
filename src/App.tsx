@@ -347,7 +347,7 @@ function HomePage({ setPage }) {
           {/* Badge */}
           <div style={{display:'inline-flex',alignItems:'center',gap:8,padding:'8px 22px',borderRadius:40,border:'1px solid rgba(45,180,148,0.3)',background:'rgba(45,180,148,0.1)',backdropFilter:'blur(10px)',marginBottom:36,animation:'fadeUp .6s ease both'}}>
             <div style={{width:7,height:7,borderRadius:'50%',background:C.teal,boxShadow:`0 0 10px ${C.teal}`,animation:'pulse 2s infinite'}}/>
-            <span style={{color:'rgba(255,255,255,0.9)',fontSize:12,letterSpacing:'0.18em',textTransform:'uppercase',fontFamily:"'DM Sans',sans-serif",fontWeight:500}}>Founder of Safibase</span>
+            <span style={{color:'rgba(255,255,255,0.9)',fontSize:12,letterSpacing:'0.18em',textTransform:'uppercase',fontFamily:"'DM Sans',sans-serif",fontWeight:500}}>Safibase</span>
           </div>
 
           <h1 style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(44px,7.5vw,88px)',lineHeight:1.05,color:'#fff',marginBottom:28,letterSpacing:'-0.025em',animation:'fadeUp .65s .1s ease both'}}>
