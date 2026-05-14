@@ -592,6 +592,13 @@ const skills = [
 ];
 
 
+const values = [
+  { icon:<Layers size={20}/>,    title:'Systems over hustle', desc:'The goal is infrastructure that runs without you — not more effort, smarter design.' },
+  { icon:<Zap size={20}/>,       title:'Automation first',    desc:'If a task happens more than twice with the same inputs, it should run itself.' },
+  { icon:<BarChart2 size={20}/>, title:'Clarity in data',     desc:'You can\'t improve what you can\'t see. Good systems make the right numbers obvious.' },
+  { icon:<Globe size={20}/>,     title:'Built to last',       desc:'I document everything, design for handoff, and build things your team can actually maintain.' },
+];
+
 // ─────────────────────────────────────────────────────────────────────────────
 function AboutPage({ setPage }) {
 
@@ -942,79 +949,7 @@ function AboutPage({ setPage }) {
         </div>
       </section>
 
-      {/* ── TIMELINE ─────────────────────────────────────────────────────── */}
-      <section style={{ padding:'100px 0', background:C.bgAlt, position:'relative', overflow:'hidden' }}>
-        <GridTexture/>
-        <div style={{ maxWidth:900, margin:'0 auto', padding:'0 48px', position:'relative', zIndex:1 }}>
-          <FadeSection>
-            <div style={{ marginBottom:64 }}>
-              <span style={{
-                display:'inline-block',padding:'5px 16px',borderRadius:20,
-                background:C.cognacSoft,border:`1px solid rgba(196,98,45,0.25)`,
-                color:C.cognac,fontSize:11,letterSpacing:'0.14em',
-                textTransform:'uppercase',fontFamily:"'DM Sans',sans-serif",
-                fontWeight:600,marginBottom:16,
-              }}>Career</span>
-              <h2 style={{ fontFamily:"'Playfair Display',serif",fontSize:'clamp(28px,4vw,42px)',color:C.textDark }}>The Journey</h2>
-            </div>
-          </FadeSection>
-
-          {/* Vertical timeline */}
-          <div style={{ position:'relative' }}>
-            {/* Track line */}
-            <div style={{
-              position:'absolute',left:21,top:6,bottom:6,width:2,
-              background:`linear-gradient(to bottom,${C.teal},rgba(45,180,148,0.04))`,
-              borderRadius:2,
-            }}/>
-
-            <div style={{ display:'flex', flexDirection:'column', gap:0 }}>
-              {timeline.map((item, i) => (
-                <FadeSection key={i} delay={i * 0.07}>
-                  <div style={{ paddingLeft:64, paddingBottom: i < timeline.length-1 ? 48 : 0, position:'relative' }}>
-                    {/* Dot */}
-                    <div style={{
-                      position:'absolute',left:13,top:6,
-                      width:18,height:18,borderRadius:'50%',
-                      background:item.color,
-                      border:`3px solid ${C.bgAlt}`,
-                      boxShadow:`0 0 0 3px ${item.color}30, 0 4px 12px ${item.color}40`,
-                      zIndex:1,
-                    }}/>
-
-                    <div style={{
-                      background:C.bgCard,border:`1px solid ${C.border}`,
-                      borderRadius:16,padding:'24px 28px',
-                      boxShadow:C.shadow,
-                      transition:'all .28s cubic-bezier(.22,1,.36,1)',
-                    }}
-                      onMouseEnter={e=>{e.currentTarget.style.transform='translateX(4px)';e.currentTarget.style.borderColor=`${item.color}40`;e.currentTarget.style.boxShadow=C.shadowMd;}}
-                      onMouseLeave={e=>{e.currentTarget.style.transform='none';e.currentTarget.style.borderColor=C.border;e.currentTarget.style.boxShadow=C.shadow;}}
-                    >
-                      <div style={{ display:'flex', flexWrap:'wrap', justifyContent:'space-between', gap:10, marginBottom:8 }}>
-                        <div>
-                          <h3 style={{ fontFamily:"'Playfair Display',serif",color:C.textDark,fontSize:18,margin:'0 0 3px' }}>{item.role}</h3>
-                          <p style={{ color:item.color,fontSize:13,margin:0,fontFamily:"'DM Sans',sans-serif",fontWeight:500 }}>{item.org}</p>
-                        </div>
-                        <div style={{
-                          display:'flex',alignItems:'center',gap:6,
-                          padding:'5px 13px',borderRadius:20,
-                          background:C.bgAlt,border:`1px solid ${C.border}`,
-                          alignSelf:'flex-start',
-                        }}>
-                          <span style={{ color:C.textDim,fontSize:11,fontFamily:"'DM Sans',sans-serif" }}>{item.year}</span>
-                        </div>
-                      </div>
-                      <p style={{ color:C.textDim,fontSize:13,lineHeight:1.75,fontFamily:"'DM Sans',sans-serif",margin:0 }}>{item.desc}</p>
-                    </div>
-                  </div>
-                </FadeSection>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
+    
       {/* ── SOCIAL / CTA ─────────────────────────────────────────────────── */}
       <section style={{ padding:'100px 48px', background:C.bgDeep, textAlign:'center', position:'relative', overflow:'hidden' }}>
         <GridTexture dark/>
