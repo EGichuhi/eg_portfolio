@@ -604,56 +604,6 @@ const skills = [
   { group:'Data & Science',  items:['Python','MATLAB','SQL','Pandas','NumPy','COMSOL','AutoCAD'] },
 ];
 
-const timeline = [
-  {
-    year:'2024 – Now', type:'founder',
-    role:'Founder & Systems Designer',
-    org:'Safibase',
-    location:'Toronto, ON',
-    color:C.teal,
-    desc:'Building clean, scalable systems for service businesses — CRM pipelines, automations, dashboards, and client-facing websites. Replacing scattered spreadsheets with infrastructure that actually works.',
-  },
-  {
-    year:'APR – AUG 2025', type:'work',
-    role:'B2B IT Intern',
-    org:'Philip Morris International',
-    location:'Toronto, ON (Hybrid)',
-    color:'#7c5fe8',
-    desc:'Validated structured data pipelines between SAP ERP systems and partner tools. Developed and tested JIRA / Confluence features, and supported cross-functional technical projects.',
-  },
-  {
-    year:'JAN – APR 2025', type:'work',
-    role:'Operations Engineer & Technology Intern',
-    org:'Second Bind',
-    location:'Toronto, ON',
-    color:C.cognac,
-    desc:'Implemented AI automations to eliminate manual tasks. Identified and resolved operational bottlenecks, increasing throughput through process redesign and technology-led solutions.',
-  },
-  {
-    year:'JAN – JUN 2024', type:'work',
-    role:'Data Analyst',
-    org:'Telus International',
-    location:'Vancouver, BC (Remote)',
-    color:'#e8a030',
-    desc:'Reviewed AI-generated outputs with 98% accuracy in protocol adherence. Improved reliability of user-facing responses by identifying and resolving model inconsistencies.',
-  },
-  {
-    year:'JAN – APR 2023', type:'work',
-    role:'Data Engineering Intern',
-    org:'AmLive',
-    location:'Toronto, ON (Hybrid)',
-    color:C.teal,
-    desc:'Built a MongoDB data processing pipeline for streamlined storage and retrieval. Developed an ETL process to aggregate music streaming data using SQL and Python.',
-  },
-];
-
-const values = [
-  { icon:<Layers size={20}/>,    title:'Systems over hustle', desc:'The goal is infrastructure that runs without you — not more effort, smarter design.' },
-  { icon:<Zap size={20}/>,       title:'Automation first',    desc:'If a task happens more than twice with the same inputs, it should run itself.' },
-  { icon:<BarChart2 size={20}/>, title:'Clarity in data',     desc:'You can\'t improve what you can\'t see. Good systems make the right numbers obvious.' },
-  { icon:<Globe size={20}/>,     title:'Built to last',       desc:'I document everything, design for handoff, and build things your team can actually maintain.' },
-];
-
 // ─────────────────────────────────────────────────────────────────────────────
 function AboutPage({ setPage }) {
 
