@@ -8,20 +8,7 @@ import {
 
 // ─── BRIGHT WARM PALETTE ─────────────────────────────────────────────────────
 // Base: warm cream/parchment. Accents: cognac brown + teal.
-// Think premium editorial — not dark mode, not clinical white.// Add this above your component or near your constants
-const PILL_COLOURS = [
-  { bg: 'rgba(45,180,148,0.12)', text: '#2db494', border: 'rgba(45,180,148,0.25)' }, // teal
-  { bg: 'rgba(139,92,246,0.12)', text: '#8b5cf6', border: 'rgba(139,92,246,0.25)' }, // purple
-  { bg: 'rgba(236,72,153,0.12)', text: '#ec4899', border: 'rgba(236,72,153,0.25)' }, // pink
-  { bg: 'rgba(59,130,246,0.12)', text: '#3b82f6', border: 'rgba(59,130,246,0.25)' }, // blue
-  { bg: 'rgba(249,115,22,0.12)', text: '#f97316', border: 'rgba(249,115,22,0.25)' }, // orange
-  { bg: 'rgba(234,179,8,0.12)',  text: '#ca8a04', border: 'rgba(234,179,8,0.25)'  }, // yellow
-];
-
-// Add this — assigns a stable colour per skill using its index
-function getPillColour(groupIndex: number, skillIndex: number) {
-  return PILL_COLOURS[(groupIndex * 3 + skillIndex) % PILL_COLOURS.length];
-}
+// Think premium editorial — not dark mode, not clinical white.
 const C = {
   bg:          '#fdf6ee',   // warm parchment — main background
   bgAlt:       '#f5ead8',   // deeper warm cream — alternating sections
@@ -604,6 +591,7 @@ const skills = [
   { group:'Data & Science',  items:['Python','MATLAB','SQL','Pandas','NumPy','COMSOL','AutoCAD'] },
 ];
 
+
 // ─────────────────────────────────────────────────────────────────────────────
 function AboutPage({ setPage }) {
 
@@ -899,6 +887,60 @@ function AboutPage({ setPage }) {
     </div>
   </div>
 </FadeSection>
+      {/* ── SKILLS ───────────────────────────────────────────────────────── */}
+      <section style={{ padding:'100px 0', background:C.bg, position:'relative', overflow:'hidden' }}>
+        <Orbs/>
+        <div style={{ maxWidth:1100, margin:'0 auto', padding:'0 48px', position:'relative', zIndex:1 }}>
+          <FadeSection>
+            <div style={{ marginBottom:64 }}>
+              <span style={{
+                display:'inline-block',padding:'5px 16px',borderRadius:20,
+                background:C.tealSoft,border:`1px solid ${C.tealBorder}`,
+                color:C.teal,fontSize:11,letterSpacing:'0.14em',
+                textTransform:'uppercase',fontFamily:"'DM Sans',sans-serif",
+                fontWeight:600,marginBottom:16,
+              }}>Toolkit</span>
+              <h2 style={{ fontFamily:"'Playfair Display',serif",fontSize:'clamp(28px,4vw,42px)',color:C.textDark }}>Skills & Technologies</h2>
+            </div>
+          </FadeSection>
+
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(260px,1fr))', gap:22 }}>
+            {skills.map((group, i) => (
+              <FadeSection key={i} delay={i * 0.07}>
+                <div style={{
+                  padding:'28px',borderRadius:18,
+                  background:C.bgCard,border:`1px solid ${C.border}`,
+                  boxShadow:C.shadow,
+                  transition:'all .28s cubic-bezier(.22,1,.36,1)',
+                }}
+                  onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow=C.shadowMd;}}
+                  onMouseLeave={e=>{e.currentTarget.style.transform='none';e.currentTarget.style.boxShadow=C.shadow;}}
+                >
+                  <h3 style={{
+                    fontFamily:"'DM Sans',sans-serif",fontWeight:600,
+                    color:C.textDark,fontSize:13,letterSpacing:'0.08em',
+                    textTransform:'uppercase',marginBottom:16,
+                  }}>{group.group}</h3>
+                  <div style={{ display:'flex', flexWrap:'wrap', gap:8 }}>
+                    {group.items.map((skill,j) => (
+                      <span key={j} style={{
+                        padding:'5px 12px',borderRadius:8,
+                        background:C.bgAlt,border:`1px solid ${C.border}`,
+                        color:C.textMid,fontSize:13,
+                        fontFamily:"'DM Sans',sans-serif",
+                        transition:'all .18s',cursor:'default',
+                      }}
+                        onMouseEnter={e=>{e.currentTarget.style.background=C.tealSoft;e.currentTarget.style.color=C.teal;e.currentTarget.style.borderColor=C.tealBorder;}}
+                        onMouseLeave={e=>{e.currentTarget.style.background=C.bgAlt;e.currentTarget.style.color=C.textMid;e.currentTarget.style.borderColor=C.border;}}
+                      >{skill}</span>
+                    ))}
+                  </div>
+                </div>
+              </FadeSection>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ── TIMELINE ─────────────────────────────────────────────────────── */}
       <section style={{ padding:'100px 0', background:C.bgAlt, position:'relative', overflow:'hidden' }}>
@@ -1208,78 +1250,40 @@ function WorkPage({ setPage }) {
       ))}
   </div>
 </div>
-       const PILL_COLOURS = [
-  { bg: 'rgba(45,180,148,0.12)',  text: '#2db494', border: 'rgba(45,180,148,0.25)'  },
-  { bg: 'rgba(139,92,246,0.12)', text: '#8b5cf6', border: 'rgba(139,92,246,0.25)' },
-  { bg: 'rgba(236,72,153,0.12)', text: '#ec4899', border: 'rgba(236,72,153,0.25)'  },
-  { bg: 'rgba(59,130,246,0.12)', text: '#3b82f6', border: 'rgba(59,130,246,0.25)'  },
-  { bg: 'rgba(249,115,22,0.12)', text: '#f97316', border: 'rgba(249,115,22,0.25)'  },
-  { bg: 'rgba(234,179,8,0.12)',  text: '#ca8a04', border: 'rgba(234,179,8,0.25)'   },
-];
-
-function getPillColour(groupIndex: number, skillIndex: number) {
-  return PILL_COLOURS[(groupIndex * 3 + skillIndex) % PILL_COLOURS.length];
-}
-
-{/* Experience */}
-<div style={{ display:'flex', alignItems:'center', gap:16, marginBottom:52, marginTop:80 }}>
-  <div style={{ width:44, height:44, borderRadius:12, background:C.tealSoft, border:`1px solid ${C.tealBorder}`, display:'flex', alignItems:'center', justifyContent:'center' }}>
-    <Briefcase size={19} color={C.teal}/>
-  </div>
-  <div>
-    <p style={{ color:C.teal, fontSize:11, letterSpacing:'0.16em', textTransform:'uppercase', margin:'0 0 2px', fontFamily:"'DM Sans',sans-serif", fontWeight:600 }}>Career</p>
-    <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:32, color:C.textDark, margin:0 }}>Work Experience</h2>
-  </div>
-</div>
-
-<div style={{ position:'relative', marginBottom:100 }}>
-  <div style={{ position:'absolute', left:21, top:8, bottom:8, width:2, background:`linear-gradient(to bottom,${C.teal},rgba(45,180,148,0.04))`, borderRadius:2 }}/>
-  {experiences.map((exp, i) => (
-    <div key={i} style={{ paddingLeft:64, paddingBottom: i < experiences.length-1 ? 48 : 0, position:'relative' }}>
-      <div style={{ position:'absolute', left:13, top:6, width:18, height:18, borderRadius:'50%', background:C.teal, border:`3px solid ${C.bg}`, boxShadow:`0 0 0 3px ${C.tealBorder},0 4px 12px rgba(45,180,148,0.3)`, zIndex:1 }}/>
-      <div
-        className="card-hover"
-        style={{ background:C.bgCard, border:`1px solid ${C.border}`, borderRadius:16, padding:'26px 30px', boxShadow:C.shadow, transition:'all .28s cubic-bezier(.22,1,.36,1)' }}
-        onMouseEnter={e => { e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow=C.shadowMd; }}
-        onMouseLeave={e => { e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow=C.shadow; }}
-      >
-        {/* Header row */}
-        <div style={{ display:'flex', flexWrap:'wrap', justifyContent:'space-between', gap:12, marginBottom:16 }}>
+        {/* Experience */}
+        <div style={{display:'flex',alignItems:'center',gap:16,marginBottom:52, marginTop:80}}>
+          <div style={{width:44,height:44,borderRadius:12,background:C.tealSoft,border:`1px solid ${C.tealBorder}`,display:'flex',alignItems:'center',justifyContent:'center'}}><Briefcase size={19} color={C.teal}/></div>
           <div>
-            <h3 style={{ fontFamily:"'Playfair Display',serif", color:C.textDark, fontSize:18, margin:'0 0 3px' }}>{exp.role}</h3>
-            <p style={{ color:C.teal, fontSize:13, margin:0, fontFamily:"'DM Sans',sans-serif", fontWeight:500 }}>{exp.company}</p>
-          </div>
-          <div style={{ display:'flex', alignItems:'center', gap:6, padding:'5px 13px', borderRadius:20, background:C.bgAlt, border:`1px solid ${C.border}`, alignSelf:'flex-start' }}>
-            <Calendar size={11} color={C.textDim}/>
-            <span style={{ color:C.textDim, fontSize:11, fontFamily:"'DM Sans',sans-serif" }}>{exp.date}</span>
+            <p style={{color:C.teal,fontSize:11,letterSpacing:'0.16em',textTransform:'uppercase',margin:'0 0 2px',fontFamily:"'DM Sans',sans-serif",fontWeight:600}}>Career</p>
+            <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:32,color:C.textDark,margin:0}}>Work Experience</h2>
           </div>
         </div>
 
-        {/* Bullet points as coloured pills */}
-        <div style={{ display:'flex', flexWrap:'wrap', gap:8, marginTop:14 }}>
-          {exp.bullets.map((b, j) => {
-            const col = getPillColour(i, j);
-            return (
-              <span key={j} style={{
-                padding:'5px 12px', borderRadius:8,
-                background: col.bg,
-                border: `1px solid ${col.border}`,
-                color: col.text,
-                fontSize:13,
-                fontFamily:"'DM Sans',sans-serif",
-                lineHeight:1.5,
-                transition:'all .18s', cursor:'default',
-              }}
-                onMouseEnter={e => { e.currentTarget.style.transform='translateY(-2px)'; e.currentTarget.style.opacity='0.8'; }}
-                onMouseLeave={e => { e.currentTarget.style.transform='none'; e.currentTarget.style.opacity='1'; }}
-              >{b}</span>
-            );
-          })}
+        <div style={{position:'relative',marginBottom:100}}>
+          <div style={{position:'absolute',left:21,top:8,bottom:8,width:2,background:`linear-gradient(to bottom,${C.teal},rgba(45,180,148,0.04))`,borderRadius:2}}/>
+          {experiences.map((exp,i) => (
+            <div key={i} style={{paddingLeft:64,paddingBottom: i<experiences.length-1 ? 48 : 0,position:'relative'}}>
+              <div style={{position:'absolute',left:13,top:6,width:18,height:18,borderRadius:'50%',background:C.teal,border:`3px solid ${C.bg}`,boxShadow:`0 0 0 3px ${C.tealBorder},0 4px 12px rgba(45,180,148,0.3)`,zIndex:1}}/>
+              <div className="card-hover" style={{background:C.bgCard,border:`1px solid ${C.border}`,borderRadius:16,padding:'26px 30px',boxShadow:C.shadow}}>
+                <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-between',gap:12,marginBottom:10}}>
+                  <div>
+                    <h3 style={{fontFamily:"'Playfair Display',serif",color:C.textDark,fontSize:18,margin:'0 0 3px'}}>{exp.role}</h3>
+                    <p style={{color:C.teal,fontSize:13,margin:0,fontFamily:"'DM Sans',sans-serif",fontWeight:500}}>{exp.company}</p>
+                  </div>
+                  <div style={{display:'flex',alignItems:'center',gap:6,padding:'5px 13px',borderRadius:20,background:C.bgAlt,border:`1px solid ${C.border}`,alignSelf:'flex-start'}}>
+                    <Calendar size={11} color={C.textDim}/>
+                    <span style={{color:C.textDim,fontSize:11,fontFamily:"'DM Sans',sans-serif"}}>{exp.date}</span>
+                  </div>
+                </div>
+                <ul style={{margin:'14px 0 0',padding:'0 0 0 16px',display:'flex',flexDirection:'column',gap:7}}>
+                  {exp.bullets.map((b,j) => <li key={j} style={{color:C.textDim,fontSize:13,lineHeight:1.75,fontFamily:"'DM Sans',sans-serif"}}>{b}</li>)}
+                </ul>
+              </div>
+            </div>
+          ))}
         </div>
+
       </div>
-    </div>
-  ))}
-</div>
 
       {/* Web Projects Modal */}
       {webModal && (
