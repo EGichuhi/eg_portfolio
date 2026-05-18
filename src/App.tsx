@@ -1477,8 +1477,7 @@ const webProjectsFull = [
     technologies:['React','Tag Filtering','Full Article Reader','Dark Hero'],
     link:'http://www.jackiekariuki.ca',
     badge:'Built Here',
-    isInternal:true,
-    internalPage:'blog',
+    isInternal:false,
   },
   {
     title:'Kaloga Drywall',
