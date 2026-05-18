@@ -1475,7 +1475,7 @@ const webProjectsFull = [
     description:'Kariuki Socials helps businesses show up online in a way that feels real, clear, and connected to their audience.',
     image:'kariukisocial.png',
     technologies:['React','Tag Filtering','Full Article Reader','Dark Hero'],
-    link:'#',
+    link:'http://www.jackiekariuki.ca',
     badge:'Built Here',
     isInternal:true,
     internalPage:'blog',
