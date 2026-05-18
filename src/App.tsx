@@ -804,7 +804,7 @@ function AboutPage({ setPage }) {
             {/* Story paragraphs */}
             <div style={{ display:'flex', flexDirection:'column', gap:28 }}>
               {[
-                `I'm Eunice — a Nanotechnology Engineering student at the University of Waterloo who spent years in labs building computational models for drug delivery and synthesizing nanoparticles at the nanoscale. That kind of work teaches you something most people don't expect: precision isn't just for science. Every system, whether molecular or operational, only works when every variable is understood and controlled.`,
+                `I'm Eunice — a Nanotechnology Engineering student at the University of Waterloo who spent years in labs. That kind of work teaches you something most people don't expect: precision isn't just for science. Every system, whether molecular or operational, only works when every variable is understood and controlled.`,
 
 `Working across startups, a telecom giant, and a recycling tech company showed me the same problem everywhere: talented people drowning in spreadsheets, disconnected tools, and processes held together with duct tape. Not for lack of trying — but because no one had built them the right infrastructure.`,
 
